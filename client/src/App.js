@@ -1,6 +1,6 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import UserDashboard from './user/userDashboard';
+import UserDashboard from './containers/user/userDashboard';
 import Login from './containers/auth/login';
 import Register from './containers/auth/register';
 import { useSelector } from "react-redux";

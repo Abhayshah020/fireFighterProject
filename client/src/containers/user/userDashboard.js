@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { logoutResetDetails } from "../redux/actions/userAction"
+import { logoutResetDetails } from "../../redux/actions/userAction"
 import { useDispatch } from 'react-redux'
 
 function UserDashboard() {

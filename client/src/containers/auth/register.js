@@ -2,6 +2,7 @@ import React from 'react';
 // import '../../components/login.css';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import {Link} from 'react-router-dom';
 
 const registerSchema = Yup.object().shape({
     name: Yup.string()
@@ -81,6 +82,7 @@ const Register = () => {
 
 
             <button type="submit">Submit</button>
+            <Link to="/" className="user_name">hello</Link>
          </Form>
        )}
      </Formik>
