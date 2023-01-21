@@ -3,7 +3,7 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
-const SignupSchema = Yup.object().shape({
+const registerSchema = Yup.object().shape({
     name: Yup.string()
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
@@ -21,7 +21,6 @@ const SignupSchema = Yup.object().shape({
       .min(5, 'Too Short!')
       .max(50, 'Too Long!')
       .required('Required'),
-    password: Yup.string().required('Required'),
     confirmPassword: Yup.string()
       .min(5, 'Too Short!')
       .max(50, 'Too Long!')
@@ -32,21 +31,34 @@ const Register = () => {
  return(
 <>
     <h1>Signup</h1>
-     <Formik
-       initialValues={{
-        name:'',
-        address:'',
-         email: '',
-         phone:'',
-         password:'',
-         confirmPassword:''
-       }}
-       validationSchema={SignupSchema}
-       onSubmit={values => {
-         // same shape as initial values
-         console.log(values);
-       }}
-     >
+    <Formik
+              initialValues={{
+                name: "",
+                address: "",
+                email: "",
+                phone: "",
+                password: "",
+                confirmPassword: "",
+              }}
+              validationSchema={registerSchema}
+              onSubmit={async(values, { resetForm }) => {
+                const {confirmPassword, ...updatedValues} = values
+                const requestOptions = {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(updatedValues),
+                };
+                try {
+                  const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, requestOptions)
+                  // resetForm({ values: "" });
+                  console.log(values)
+                } catch (err) {
+                  alert(err);
+                }
+              }}
+            >
+
+
        {({ errors, touched }) => (
          <Form>
            <Field name="name" type="text" placeHolder="name"/>
