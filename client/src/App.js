@@ -4,6 +4,7 @@ import UserDashboard from './containers/user/userDashboard';
 import Login from './containers/auth/login';
 import Register from './containers/auth/register';
 import { useSelector } from "react-redux";
+import Home from './containers/auth/home';
 
 const App = ()=> {
   const {email} =useSelector(state=>state.user)
@@ -19,6 +20,7 @@ const AuthScreens = () => {
     <Routes>
     <Route path="/register" element={<Register />} />
     <Route path="/" element={<Login />} />
+    <Route path="/home" element={<Home />} />
   </Routes>
   )
 }
