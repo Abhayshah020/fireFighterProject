@@ -6,9 +6,8 @@ import '../../components/auth.css';
 import img1 from '../../img/wave.png'
 import img2 from '../../img/background.png'
 import img3 from '../../img/avatar.svg'
-
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee, faContactBook, faLock, faMap, faPhone, faUser } from '@fortawesome/free-solid-svg-icons'
 
 
 const registerSchema = Yup.object().shape({
@@ -78,7 +77,7 @@ const Register = () => {
                 <h2 className="title">Welcome</h2>
                 <div className="input-div one">
                   <div className="i">
-                    <i className="fas fa-user"></i>
+                  <FontAwesomeIcon icon={faUser} style={{color:"black"}}/>
                   </div>
                   <div className="div">
 
@@ -89,7 +88,7 @@ const Register = () => {
 
                 <div className="input-div pass">
                   <div className="i">
-                    <i className="fas fa-lock"></i>
+                  <FontAwesomeIcon icon={faMap} style={{color:"black"}}/>
                   </div>
                   <div className="div">
 
@@ -101,7 +100,7 @@ const Register = () => {
 
                 <div className="input-div pass">
                   <div className="i">
-                    <i className="fas fa-lock"></i>
+                  <FontAwesomeIcon icon={faContactBook} style={{color:"black"}}/>
                   </div>
                   <div className="div">
                   <Field name="email" type="text" placeHolder="Email" />
@@ -112,7 +111,7 @@ const Register = () => {
 
                 <div className="input-div pass">
                   <div className="i">
-                    <i className="fas fa-lock"></i>
+                  <FontAwesomeIcon icon={faPhone} style={{color:"black"}}/>
                   </div>
                   <div className="div">
 
@@ -123,7 +122,7 @@ const Register = () => {
                 </div>
                 <div className="input-div pass">
                   <div className="i">
-                    <i className="fas fa-lock"></i>
+                  <FontAwesomeIcon icon={faLock} style={{color:"black"}}/>
                   </div>
                   <div className="div">
 
@@ -134,7 +133,7 @@ const Register = () => {
                 </div>
                 <div className="input-div pass">
                   <div className="i">
-                    <i className="fas fa-lock"></i>
+                  <FontAwesomeIcon icon={faLock} style={{color:"black"}}/>
                   </div>
                   <div className="div">
 

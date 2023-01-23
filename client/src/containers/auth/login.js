@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import img1 from '../../img/wave.png'
 import img2 from '../../img/background.png'
 import img3 from '../../img/avatar.svg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee, faContactBook, faLock } from '@fortawesome/free-solid-svg-icons'
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -57,7 +59,7 @@ const Login = () => {
                                 <h2 className="title">Welcome</h2>
                                 <div className="input-div one">
                                     <div className="i">
-                                        <i className="fas fa-user"></i>
+                                    <FontAwesomeIcon icon={faContactBook} style={{color:"black"}}/>
                                     </div>
                                     <div className="div">
                                         <Field name="email" type="email" placeHolder="Email" />
@@ -66,7 +68,7 @@ const Login = () => {
                                 </div>
                                 <div className="input-div pass">
                                     <div className="i">
-                                        <i className="fas fa-lock"></i>
+                                    <FontAwesomeIcon icon={faLock} style={{color:"black"}}/>
                                     </div>
                                     <div className="div">
                                         <Field name="password" type="password" placeHolder="Password" />

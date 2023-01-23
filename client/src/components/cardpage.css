@@ -33,8 +33,7 @@
 }
  
 .container1 .card1:hover{
-  filter: blur(0);
-  transform: scale(1.1);
+  transform: scale(1.15);
   opacity: 1;
 } 
  
