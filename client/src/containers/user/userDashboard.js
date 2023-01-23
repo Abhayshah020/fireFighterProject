@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux'
 import { logoutResetDetails } from "../../redux/actions/userAction"
 import { useDispatch } from 'react-redux'
 import CardPage from '../../components/cardPage'
+import Footer from '../../components/footer';
 
 function UserDashboard() {
   const dispatch = useDispatch()
@@ -13,6 +14,7 @@ function UserDashboard() {
     <>
     <div>
          <CardPage/>
+         <Footer/>
     </div> 
     </>
   )

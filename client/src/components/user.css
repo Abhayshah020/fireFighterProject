@@ -129,7 +129,7 @@ nav .icon-burger .line {
 		display: block;
 	}
 	nav :checked ~ .icon-burger .line:nth-child(1) {
-		transform: translateY(10px) rotate(225deg);
+		transform: translateY(5px) rotate(225deg);
 	}
 	nav :checked ~ .icon-burger .line:nth-child(3) {
 		transform: translateY(-10px) rotate(-225deg);

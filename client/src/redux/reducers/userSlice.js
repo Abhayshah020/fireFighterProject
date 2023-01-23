@@ -7,25 +7,31 @@ const initialState = {
   email: "",
   name: "",
   token: "",
+  address:"",
+  phone:"",
   _id: ""
 };
 
 const userSlice = (state = initialState, action) => {
   switch (action.type) {
     case ADD_USER_DETAILS:
-      const { name, email, _id } = action.payload;
+      const { name, email,address, _id,phone} = action.payload;
       return {
         ...state,
         name,
         email,
-        _id
+        address,
+        _id,
+        phone
       };
     case REMOVE_USER_DETAILS_LOGOUT:
       return {
         ...state,
         name: "",
         email: "",
-        _id: ""
+        address:"",
+        _id: "",
+        phone:""
       };
     default:
       return state;
