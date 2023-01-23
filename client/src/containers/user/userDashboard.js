@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import { logoutResetDetails } from "../../redux/actions/userAction"
 import { useDispatch } from 'react-redux'
+import CardPage from '../../components/cardPage'
 
 function UserDashboard() {
   const dispatch = useDispatch()
@@ -11,8 +12,7 @@ function UserDashboard() {
   return (
     <>
     <div>
-         Welcome to user
-         <button className="button_logout" onClick={() => triggerLogout()}>Logout</button>
+         <CardPage/>
     </div> 
     </>
   )
