@@ -31,7 +31,8 @@ const registerSchema = Yup.object().shape({
   confirmPassword: Yup.string()
     .min(5, 'Too Short!')
     .max(50, 'Too Long!')
-    .required('Required'),
+    .required('Required')
+    .oneOf([Yup.ref("password"), null], "Passwords must match"),
 });
 
 const Register = () => {
@@ -77,87 +78,85 @@ const Register = () => {
                 <h2 className="title">Welcome</h2>
                 <div className="input-div one">
                   <div className="i">
-                  <FontAwesomeIcon icon={faUser} style={{color:"black"}}/>
+                    <FontAwesomeIcon icon={faUser} style={{ color: "black" }} />
                   </div>
                   <div className="div">
 
-                  <Field name="name" type="text" placeHolder="name" />
-                {errors.name && touched.name ? <div>{errors.name}</div> : null}
+                    <Field name="name" type="text" placeHolder="name" />
+                    {errors.name && touched.name ? <div className="validaton-message">{errors.name}</div> : null}
                   </div>
                 </div>
 
                 <div className="input-div pass">
                   <div className="i">
-                  <FontAwesomeIcon icon={faMap} style={{color:"black"}}/>
+                    <FontAwesomeIcon icon={faMap} style={{ color: "black" }} />
                   </div>
                   <div className="div">
 
-                  <Field name="address" type="text" placeHolder="address" />
-                {errors.address && touched.address ? <div>{errors.address}</div> : null}
-
-                  </div>
-                </div>
-
-                <div className="input-div pass">
-                  <div className="i">
-                  <FontAwesomeIcon icon={faContactBook} style={{color:"black"}}/>
-                  </div>
-                  <div className="div">
-                  <Field name="email" type="text" placeHolder="Email" />
-                {errors.email && touched.email ? <div>{errors.email}</div> : null}
+                    <Field name="address" type="text" placeHolder="address" />
+                    {errors.address && touched.address ? <div className="validaton-message">{errors.address}</div> : null}
 
                   </div>
                 </div>
 
                 <div className="input-div pass">
                   <div className="i">
-                  <FontAwesomeIcon icon={faPhone} style={{color:"black"}}/>
+                    <FontAwesomeIcon icon={faContactBook} style={{ color: "black" }} />
+                  </div>
+                  <div className="div">
+                    <Field name="email" type="text" placeHolder="Email" />
+                    {errors.email && touched.email ? <div className="validaton-message">{errors.email}</div> : null}
+
+                  </div>
+                </div>
+
+                <div className="input-div pass">
+                  <div className="i">
+                    <FontAwesomeIcon icon={faPhone} style={{ color: "black" }} />
                   </div>
                   <div className="div">
 
-                  <Field name="phone" type="text" placeHolder="phone" />
-                {errors.phone && touched.phone ? <div>{errors.phone}</div> : null}
+                    <Field name="phone" type="text" placeHolder="phone" />
+                    {errors.phone && touched.phone ? <div className="validaton-message">{errors.phone}</div> : null}
 
                   </div>
                 </div>
                 <div className="input-div pass">
                   <div className="i">
-                  <FontAwesomeIcon icon={faLock} style={{color:"black"}}/>
+                    <FontAwesomeIcon icon={faLock} style={{ color: "black" }} />
                   </div>
                   <div className="div">
 
-                  <Field name="password" type="password" placeHolder="Password" />
-                {errors.password && touched.password ? <div>{errors.password}</div> : null}
+                    <Field name="password" type="password" placeHolder="Password" />
+                    {errors.password && touched.password ? <div className="validaton-message">{errors.password}</div> : null}
 
                   </div>
                 </div>
                 <div className="input-div pass">
                   <div className="i">
-                  <FontAwesomeIcon icon={faLock} style={{color:"black"}}/>
+                    <FontAwesomeIcon icon={faLock} style={{ color: "black" }} />
                   </div>
                   <div className="div">
 
-                  <Field name="confirmPassword" type="password" placeHolder="confirmPassword" />
-                {errors.confirmPassword && touched.confirmPassword ? <div>{errors.confirmPassword}</div> : null}
+                    <Field name="confirmPassword" type="password" placeHolder="confirmPassword" />
+                    {errors.confirmPassword && touched.confirmPassword ? <div className="validaton-message">{errors.confirmPassword}</div> : null}
 
                   </div>
                 </div>
-
-                <a href="#">Change Password/Login details?</a>
-                <button type="submit" className="btn">Register Now!</button>
-                <Link to="/" className="user_name"><button className="btn">Login</button></Link>
-
-                
+                <button type="submit" className="btn btn-reg">Register Now!</button>
+                <Link to="/" className="user_name"><a href="#">Already have account? Go Back To Login</a></Link>
+                <Link to="/" className="user_name"><button className="btn-login">Login</button></Link>
 
               </Form>
             )}
           </Formik>
-          </div>
+        </div>
       </div>
 
-        </>
-        
- )}
+    </>
+
+  )
+}
 
 export default Register;
 

@@ -7,9 +7,7 @@ import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
-    const {email} =useSelector(state=>state.user)
-    const {address} =useSelector(state=>state.user)
-    const {phone} =useSelector(state=>state.user)
+    const {email, address, phone} =useSelector(state=>state.user)
 
     return (
         <>
@@ -46,8 +44,8 @@ const Footer = () => {
                 </div>
                 <div class="footer-right">
                     <p class="footer-company-about">
-                        <span>About the company</span>
-                        <strong>Fire<strong>Fighter</strong></strong> Things aren't going well at all with mom today.
+                        <span><strong>Fire<strong>Fighter</strong></strong></span>
+                         Things aren't going well at all with mom today.
                          She is just a limp noodle and wants to sleep all the time. I sure hope that things get better soon.
                     </p>
                     <div class="footer-icons">

@@ -13,8 +13,9 @@ function UserDashboard() {
   return (
     <>
     <div>
-         <CardPage/>
-         <Footer/>
+      Its UserDashboard
+         {/* <CardPage/>
+         <Footer/> */}
     </div> 
     </>
   )

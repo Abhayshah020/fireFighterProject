@@ -63,7 +63,7 @@ const Login = () => {
                                     </div>
                                     <div className="div">
                                         <Field name="email" type="email" placeHolder="Email" />
-                                        {errors.email && touched.email ? <div>{errors.email}</div> : null}
+                                        {errors.email && touched.email ? <div className="validaton-message">{errors.email}</div> : null}
                                     </div>
                                 </div>
                                 <div className="input-div pass">
@@ -72,14 +72,13 @@ const Login = () => {
                                     </div>
                                     <div className="div">
                                         <Field name="password" type="password" placeHolder="Password" />
-                                        {errors.password && touched.password ? <div>{errors.password}</div> : null}
+                                        {errors.password && touched.password ? <div className="validaton-message">{errors.password}</div> : null}
 
                                     </div>
                                 </div>
-                                <a href="#">Change Password/Login details?</a>
                                 <button type="submit" className="btn">Submit</button>
                                 <Link to="/register" className="user_name"><a href="#">New here? we will be happy to have you on board</a>
-                                <input type="submit" className="btn" value="Register Now!" /></Link>
+                                <input type="submit" className="btn-login" value="Register Now!" /></Link>
 
                             </Form>
                         )}

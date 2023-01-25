@@ -8,7 +8,7 @@ nav {
 	right: 0;
 	top: 0;
 	padding: 0 5%;
-	height: 80px;
+	height: 55px;
 	background-color: #38d39f;
 }
 .about{
@@ -55,7 +55,8 @@ nav .links {
 }
 
 .button_logout:hover {	
-	padding-top: 30px;
+	padding-top: 20px;
+	font-size: 20px;
 }
 
 nav .links li {
@@ -70,6 +71,7 @@ nav .links li {
 }
 .navlinks:hover{
 	padding-top: 30px;
+	font-size: 20px;
 }
 
 
