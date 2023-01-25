@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
@@ -9,7 +9,7 @@ import img3 from '../../img/avatar.svg'
 import { message } from 'antd';
 import { useNavigate } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faContactBook, faLock, faMap, faPhone, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee, faContactBook, faLock, faMap, faPhone, faUser,faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 
 const registerSchema = Yup.object().shape({
@@ -39,7 +39,8 @@ const registerSchema = Yup.object().shape({
 });
 
 const Register = () => {
-  
+  const [showPassword, setShowPassword] = useState(true)
+  const [showPassword1, setShowPassword1] = useState(true)
 const navigate = useNavigate()
   return (
     <>
@@ -134,22 +135,22 @@ const navigate = useNavigate()
                 </div>
                 <div className="input-div pass">
                   <div className="i">
-                    <FontAwesomeIcon icon={faLock} style={{ color: "black" }} />
+                  <FontAwesomeIcon onClick={() => setShowPassword(!showPassword)} icon={showPassword ? faEyeSlash : faEye} style={{color:"black",cursor:"pointer"}} />
                   </div>
                   <div className="div">
 
-                    <Field name="password" type="password" placeHolder="Password" />
+                    <Field name="password" type={showPassword ? 'password' : 'text'} placeHolder="Password" />
                     {errors.password && touched.password ? <div className="validaton-message">{errors.password}</div> : null}
 
                   </div>
                 </div>
                 <div className="input-div pass">
                   <div className="i">
-                    <FontAwesomeIcon icon={faLock} style={{ color: "black" }} />
+                  <FontAwesomeIcon onClick={() => setShowPassword1(!showPassword1)} icon={showPassword1 ? faEyeSlash : faEye} style={{color:"black",cursor:"pointer"}} />
                   </div>
                   <div className="div">
 
-                    <Field name="confirmPassword" type="password" placeHolder="confirmPassword" />
+                    <Field name="confirmPassword" type={showPassword1 ? 'password' : 'text'} placeHolder="confirmPassword" />
                     {errors.confirmPassword && touched.confirmPassword ? <div className="validaton-message">{errors.confirmPassword}</div> : null}
 
                   </div>

@@ -12,7 +12,7 @@ router.post("/login", async (req, res) => {
             if (email && isMatched) {
                 const { password, ...refactoredUserObj } = user
                 res.json({
-                    msg: "logged in successfully",
+                    msg: "You have logged in successfully",
                     isLogedin: true,
                     userData: refactoredUserObj
                 })

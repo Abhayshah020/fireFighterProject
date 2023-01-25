@@ -78,14 +78,14 @@ footer {
     width: 35%;
 }
 
-.i {
+.i1 {
     color: #ffffff;
     width: 17px;
     height: 30px;
     margin: auto;
     transition: 0.2s ease;
 }
-.i:hover {
+.i1:hover {
     background-color:#3F71EA;
     width: 24px;
 }

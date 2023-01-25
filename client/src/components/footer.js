@@ -49,11 +49,11 @@ const Footer = () => {
                          She is just a limp noodle and wants to sleep all the time. I sure hope that things get better soon.
                     </p>
                     <div class="footer-icons">
-                        <a href="#"><FontAwesomeIcon icon={faGamepad} className="i"/></a>
-                        <a href="#"><FontAwesomeIcon icon={faHome} className="i"/></a>
-                        <a href="#"><FontAwesomeIcon icon={faMagic} className="i"/></a>
-                        <a href="#"><FontAwesomeIcon icon={faMap} className="i"/></a>
-                        <a href="#"><FontAwesomeIcon icon={faLink} className="i"/></a>
+                        <a href="#"><FontAwesomeIcon icon={faGamepad} className="i1"/></a>
+                        <a href="#"><FontAwesomeIcon icon={faHome} className="i1"/></a>
+                        <a href="#"><FontAwesomeIcon icon={faMagic} className="i1"/></a>
+                        <a href="#"><FontAwesomeIcon icon={faMap} className="i1"/></a>
+                        <a href="#"><FontAwesomeIcon icon={faLink} className="i1"/></a>
                     </div>
                 </div>
             </footer>
