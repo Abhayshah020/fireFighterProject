@@ -6,11 +6,14 @@ import '../../components/auth.css';
 import img1 from '../../img/wave.png'
 import img2 from '../../img/background.png'
 import img3 from '../../img/avatar.svg'
+import { message } from 'antd';
+import { useNavigate } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee, faContactBook, faLock, faMap, faPhone, faUser } from '@fortawesome/free-solid-svg-icons'
 
 
 const registerSchema = Yup.object().shape({
+
   name: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
@@ -32,10 +35,12 @@ const registerSchema = Yup.object().shape({
     .min(5, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required')
-    .oneOf([Yup.ref("password"), null], "Passwords must match"),
+    .oneOf([Yup.ref("password"), null], "Both Passwords Must Match"),
 });
 
 const Register = () => {
+  
+const navigate = useNavigate()
   return (
     <>
       <img className="wave" src={img1} />
@@ -62,9 +67,15 @@ const Register = () => {
                 body: JSON.stringify(updatedValues),
               };
               try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, requestOptions)
-                // resetForm({ values: "" });
-                console.log(values)
+                const res = await fetch(`${process.env.REACT_APP_API_URL}/register`, requestOptions)
+                const data = await res.json()
+               console.log(data.isRegistered)
+                if (data.isRegistered) {
+                  message.success(data.msg, [2])
+                  navigate('/')
+              } else {
+                  message.error(data.msg, [2])
+              }
               } catch (err) {
                 alert(err);
               }

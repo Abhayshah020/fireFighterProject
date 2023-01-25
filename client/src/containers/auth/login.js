@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import img1 from '../../img/wave.png'
 import img2 from '../../img/background.png'
 import img3 from '../../img/avatar.svg'
+import { message } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee, faContactBook, faLock } from '@fortawesome/free-solid-svg-icons'
 
@@ -45,9 +46,13 @@ const Login = () => {
                             };
                             const res = await fetch(`${process.env.REACT_APP_API_URL}/login`, requestOptions);
                             const data = await res.json()
-                            console.log(values)
+                            console.log(data.isLogedin)
                             if (data.isLogedin) {
                                 dispatch(addUserDetails(data.userData))
+                                message.success(data.msg, [0.7])
+                                
+                            } else {
+                                message.error(data.errorMsg, [1.2])
                             }
                             resetForm({ values: '' })
                         }}

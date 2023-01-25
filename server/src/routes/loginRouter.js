@@ -19,7 +19,7 @@ router.post("/login", async (req, res) => {
             }
             else {
                 res.json({
-                    errorMsg: "Invalid username and password"
+                    errorMsg: "Invalid username or password"
                 })
             }
         }
