@@ -72,7 +72,7 @@ const Register = () => {
               if(values.role == "admin"){
                 values.adminId =random()
               }else{
-                values.adminId=""
+                values.adminId="#user"
               }
               const { confirmPassword, ...updatedValues } = values
               const requestOptions = {
@@ -87,7 +87,7 @@ const Register = () => {
                 // console.log(data.isRegistered)
                 if (data.isRegistered) {
                   message.success(data.msg, [2])
-                  // navigate('/')
+                  navigate('/')
                 } else {
                   message.error(data.msg, [2])
                 }

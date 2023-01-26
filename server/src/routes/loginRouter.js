@@ -4,7 +4,6 @@ const Users = require("../models/Users");
 const bcrypt = require("bcrypt")
 
 router.post("/login", async (req, res) => {
-
     const userId = await Users.findOne({ adminId: req.body.adminId })
     if (userId) {
         if (req.body.email) {
@@ -47,7 +46,11 @@ router.post("/login", async (req, res) => {
                 errorMsg: "Invalid Email"
             })
         }
-    } else {
+    }else if(req.body.adminId){
+        res.json({
+            errorMsg: "Invalid AdminId"
+        })
+    }else {
         if (req.body.email) {
             const user = await Users.findOne({ email: req.body.email }).lean()
             if (user) {

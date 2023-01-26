@@ -14,7 +14,7 @@ function UserDashboard() {
   return (
     <>
     <div>
-      Its UserDashboard#{_id}
+    <h1>Welcom User {name}. Your Id is #{_id}</h1>
          {/* <CardPage/>
          <Footer/> */}
     </div> 

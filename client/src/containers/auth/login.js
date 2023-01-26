@@ -62,6 +62,7 @@ const Login = () => {
                         }}
                         validationSchema={loginSchema}
                         onSubmit={async (values, { resetForm }) => {
+                            console.log(values)
                             const requestOptions = {
                                 method: "POST",
                                 headers: { "Content-Type": "application/json" },
@@ -69,7 +70,7 @@ const Login = () => {
                             };
                             const res = await fetch(`${process.env.REACT_APP_API_URL}/login`, requestOptions);
                             const data = await res.json()
-                            console.log(data.isLogedin)
+                            // console.log(data.isLogedin)
                             if (data.isLogedin) {
                                 dispatch(addUserDetails(data.userData))
                                 message.success(data.msg, [1.4])                              
