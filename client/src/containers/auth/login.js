@@ -10,11 +10,20 @@ import img2 from '../../img/background.png'
 import img3 from '../../img/avatar.svg'
 import { message } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faContactBook, faLock,faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee, faContactBook, faLock,faEye, faEyeSlash, faIdBadge, faIdCard } from '@fortawesome/free-solid-svg-icons'
 
 const Login = () => {
+    
     const [showPassword, setShowPassword] = useState(true)
+    const [showAdminIdInput, setshowAdminIdInput] = useState(true)
     const dispatch = useDispatch()
+    const displayId=()=>{
+        if (showAdminIdInput){
+            return "none"
+        }else{
+            return ""
+        }
+    }
 
     const loginSchema = Yup.object().shape({
         email: Yup.string().email('Invalid email').required('Required'),
@@ -22,6 +31,9 @@ const Login = () => {
             .min(2, 'Too Short!')
             .max(50, 'Too Long!')
             .required('Required'),
+        adminId: Yup.string()
+            .min(8, 'Too Short!')
+            .max(50, 'Too Long!'),
         password: Yup.string().required('Required'),
 
     });
@@ -39,6 +51,7 @@ const Login = () => {
                         initialValues={{
                             email: "",
                             password: "",
+                            adminId:""
                         }}
                         validationSchema={loginSchema}
                         onSubmit={async (values, { resetForm }) => {
@@ -57,7 +70,7 @@ const Login = () => {
                             } else {
                                 message.error(data.errorMsg, [1.2])
                             }
-                            resetForm({ values: '' })
+                            // resetForm({ values: '' })
                         }}
                     >
 
@@ -69,7 +82,7 @@ const Login = () => {
                                     <div className="i">
                                     <FontAwesomeIcon icon={faContactBook} style={{color:"black"}}/>
                                     </div>
-                                    <div className="div">
+                                    <div className="div" >
                                         <Field name="email" type="email" placeHolder="Email" />
                                         {errors.email && touched.email ? <div className="validaton-message">{errors.email}</div> : null}
                                     </div>
@@ -84,10 +97,22 @@ const Login = () => {
 
                                     </div>
                                 </div>
+
+                                <div className="input-div pass" style={{display:displayId()}} >
+                                    <div className="i">
+                                    <FontAwesomeIcon icon={faIdCard} style={{color:"black"}}/>
+                                    </div>
+                                    <div className="div">
+                                        <Field name="adminId" type="text" placeHolder="AdminId" />
+                                        {errors.adminId && touched.adminId ? <div className="validaton-message">{errors.adminId}</div> : null}
+
+                                    </div>
+                                </div>                                                       
+                               
                                 <button type="submit" className="btn">Submit</button>
                                 <Link to="/register" className="user_name"><a href="#">New here? we will be happy to have you on board</a>
                                 <input type="submit" className="btn-login" value="Register Now!" /></Link>
-
+                                <input type="button" onClick={() => setshowAdminIdInput(!showAdminIdInput)} value={showAdminIdInput? "Login As User":"Login As Admin"} className='inputAdminId'/>
                             </Form>
                         )}
                     </Formik>

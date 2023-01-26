@@ -7,6 +7,8 @@ const usersSchema = new mongoose.Schema(
     email: { type: String },
     phone: { type: Number },
     password: { type: String },
+    role: { type: String },
+    adminId: { type: String},
   },
   { collection: "Users" }
 );

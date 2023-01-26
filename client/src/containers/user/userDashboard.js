@@ -5,6 +5,7 @@ import CardPage from '../../components/cardPage'
 import Footer from '../../components/footer';
 
 function UserDashboard() {
+  const {_id} =useSelector(state=>state.user)
   const dispatch = useDispatch()
   const { name,role } = useSelector(state => state.user)
   const triggerLogout = () => {
@@ -13,7 +14,7 @@ function UserDashboard() {
   return (
     <>
     <div>
-      Its UserDashboard
+      Its UserDashboard#{_id}
          {/* <CardPage/>
          <Footer/> */}
     </div> 

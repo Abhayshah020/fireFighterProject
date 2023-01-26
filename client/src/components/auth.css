@@ -12,9 +12,28 @@ body{
 	color: red;
 	font-style: 20px;
 	font-weight: 600;
-	margin-top: 2.5rem;
+	margin-top: 2.3rem;
 	padding: 0.5rem;
   }
+  .validationMessage{
+	color: red;
+	font-style: 20px;
+	font-weight: 600;
+	margin-top: 1px;
+  }
+  .roleValidationMessage{
+	color: red;
+	font-style: 20px;
+	font-weight: 600;
+	margin-top: 1px;
+	margin-left: 24px;
+  }
+.accountSelector{
+	padding: 10px;
+	width: 100%;
+	margin-top: 12px;
+	border-radius:20px ;
+}
 .wave{
 	position: fixed;
 	bottom: 0;
@@ -64,12 +83,12 @@ form{
 	font-size: 2.9rem;
 }
 
-.login-content .input-div{
-	position: relative;
+.login-content .input-div {
+    position: relative;
     display: grid;
     grid-template-columns: 7% 93%;
-    margin: 25px 0;
-    padding: 5px 0;
+    margin: 10px 0;
+    padding: 1px 0;
     border-bottom: 2px solid #d9d9d9;
 }
 
@@ -102,7 +121,27 @@ form{
 	font-size: 18px;
 	transition: .3s;
 }
-
+.inputAdminId{
+	display: block;
+	width: 100%;
+	height: 50px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	text-align: center;
+	background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+	background-size: 200%;
+	font-size: 1.2rem;
+	color: #fff;
+	font-family: 'Poppins', sans-serif;
+	text-transform: uppercase;
+	margin: 0.4rem 0;
+	cursor: pointer;
+	transition: .5s;
+}
+.inputAdminId:hover{
+	background-position: right;
+}
 .input-div:before, .input-div:after{
 	content: '';
 	position: absolute;
@@ -149,9 +188,9 @@ form{
 	font-family: 'poppins', sans-serif;
 }
 
-.input-div.pass{
+/* .input-div.pass{
 	margin-bottom: 4px;
-}
+} */
 
 a{
 	display: block;

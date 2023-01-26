@@ -9,7 +9,8 @@ import img3 from '../../img/avatar.svg'
 import { message } from 'antd';
 import { useNavigate } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faContactBook, faLock, faMap, faPhone, faUser,faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee, faContactBook, faLock, faMap, faPhone, faUser, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+
 
 
 const registerSchema = Yup.object().shape({
@@ -36,12 +37,17 @@ const registerSchema = Yup.object().shape({
     .max(50, 'Too Long!')
     .required('Required')
     .oneOf([Yup.ref("password"), null], "Both Passwords Must Match"),
+    
+    role: Yup.string().required("Required"),
 });
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(true)
   const [showPassword1, setShowPassword1] = useState(true)
-const navigate = useNavigate()
+  const navigate = useNavigate()
+  const random = () => {
+    return Math.random().toString(16).substr(2, 14);
+};
   return (
     <>
       <img className="wave" src={img1} />
@@ -58,9 +64,12 @@ const navigate = useNavigate()
               phone: "",
               password: "",
               confirmPassword: "",
+              role:"",
+              adminId:random(),
             }}
             validationSchema={registerSchema}
             onSubmit={async (values, { resetForm }) => {
+              console.log(values)
               const { confirmPassword, ...updatedValues } = values
               const requestOptions = {
                 method: "POST",
@@ -70,13 +79,13 @@ const navigate = useNavigate()
               try {
                 const res = await fetch(`${process.env.REACT_APP_API_URL}/register`, requestOptions)
                 const data = await res.json()
-               console.log(data.isRegistered)
+                console.log(data.isRegistered)
                 if (data.isRegistered) {
                   message.success(data.msg, [2])
                   navigate('/')
-              } else {
+                } else {
                   message.error(data.msg, [2])
-              }
+                }
               } catch (err) {
                 alert(err);
               }
@@ -135,7 +144,7 @@ const navigate = useNavigate()
                 </div>
                 <div className="input-div pass">
                   <div className="i">
-                  <FontAwesomeIcon onClick={() => setShowPassword(!showPassword)} icon={showPassword ? faEyeSlash : faEye} style={{color:"black",cursor:"pointer"}} />
+                    <FontAwesomeIcon onClick={() => setShowPassword(!showPassword)} icon={showPassword ? faEyeSlash : faEye} style={{ color: "black", cursor: "pointer" }} />
                   </div>
                   <div className="div">
 
@@ -146,7 +155,7 @@ const navigate = useNavigate()
                 </div>
                 <div className="input-div pass">
                   <div className="i">
-                  <FontAwesomeIcon onClick={() => setShowPassword1(!showPassword1)} icon={showPassword1 ? faEyeSlash : faEye} style={{color:"black",cursor:"pointer"}} />
+                    <FontAwesomeIcon onClick={() => setShowPassword1(!showPassword1)} icon={showPassword1 ? faEyeSlash : faEye} style={{ color: "black", cursor: "pointer" }} />
                   </div>
                   <div className="div">
 
@@ -154,6 +163,14 @@ const navigate = useNavigate()
                     {errors.confirmPassword && touched.confirmPassword ? <div className="validaton-message">{errors.confirmPassword}</div> : null}
 
                   </div>
+                </div>
+                <div>
+                  <Field as="select" name="role" placeholder="Select Your Account Type" className="accountSelector">
+                    <option value="">Select Your Account Type</option>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                  </Field>
+                  {errors.role && touched.role ? <div className="roleValidationMessage">{errors.role}</div> : null}
                 </div>
                 <button type="submit" className="btn btn-reg">Register Now!</button>
                 <Link to="/" className="user_name"><a href="#">Already have account? Go Back To Login</a></Link>
@@ -171,50 +188,3 @@ const navigate = useNavigate()
 }
 
 export default Register;
-
-
-
-{/* 
-        return (
-        <>
-
-          <Formik>
-
-            {({ errors, touched }) => (
-              <Form>
-                <img src={img3} />
-                <h2 className="title">Welcome</h2>
-                <div className="input-div one">
-                  <div className="i">
-                    <i className="fas fa-user"></i>
-                  </div>
-                  <div className="div">
-                    <Field name="email" type="email" placeHolder="Email" />
-                    {errors.email && touched.email ? <div>{errors.email}</div> : null}
-                  </div>
-                </div>
-                <div className="input-div pass">
-                  <div className="i">
-                    <i className="fas fa-lock"></i>
-                  </div>
-                  <div className="div">
-                    <Field name="password" type="password" placeHolder="Password" />
-                    {errors.password && touched.password ? <div>{errors.password}</div> : null}
-
-                  </div>
-                </div>
-                <a href="#">Change Password/Login details?</a>
-                <button type="submit" className="btn">Submit</button>
-                <a href="#">New here? we will be happy to have you on board</a>
-                <Link to="/register" className="user_name"><input type="submit" className="btn" value="Register Now!" /></Link>
-
-              </Form>
-            )}
-          </Formik>
-        </div>
-      </div>
-
-    </>
-
-  )
-} */}
