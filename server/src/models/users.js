@@ -8,7 +8,7 @@ const usersSchema = new mongoose.Schema(
     phone: { type: Number },
     password: { type: String },
     role: { type: String },
-    adminId: { type: String},
+    adminId: { type: String,default:""},
   },
   { collection: "Users" }
 );

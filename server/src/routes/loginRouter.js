@@ -4,46 +4,91 @@ const Users = require("../models/Users");
 const bcrypt = require("bcrypt")
 
 router.post("/login", async (req, res) => {
-//     console.log(req.body)
-//     const userId = await Users.findById( '63d2011a078e7b45a1c9fba5')
 
-// console.log(userId)
-    if (email) {
-        const user = await Users.findOne({ email: req.body.email }).lean()
-        if (user) {
-            try {
-                const { email, password } = user;
-                const isMatched = bcrypt.compareSync(req.body.password, password)
-                if (email && isMatched) {
-                    const { password, ...refactoredUserObj } = user
+    const userId = await Users.findOne({ adminId: req.body.adminId })
+    if (userId) {
+        if (req.body.email) {
+            const user = await Users.findOne({ email: req.body.email }).lean()
+            if (user) {
+                if (user.role == "user") {
+                    try {
+                        const { email, password } = user;
+                        const isMatched = bcrypt.compareSync(req.body.password, password)
+                        if (email && isMatched) {
+                            const { password, ...refactoredUserObj } = user
+                            res.json({
+                                msg: "You have logged in as User successfully",
+                                isLogedin: true,
+                                userData: refactoredUserObj
+                            })
+                        }
+                        else {
+                            res.json({
+                                errorMsg: "Invalid Password"
+                            })
+                        }
+                    }
+                    catch (err) {
+                        console.log(err)
+                    }
+                } else {
                     res.json({
-                        msg: "You have logged in successfully",
-                        isLogedin: true,
-                        userData: refactoredUserObj
-                    })
-                }
-                else {
-                    res.json({
-                        errorMsg: "Invalid username or password"
+                        errorMsg: "Admin cannot login using adminId"
                     })
                 }
             }
-            catch (err) {
-                console.log(err)
+            else {
+                res.json({
+                    errorMsg: "User doesn't exist"
+                })
             }
-        }
-        else {
+        } else {
             res.json({
-                errorMsg: "User doesn't exist"
+                errorMsg: "Invalid Email"
             })
         }
     } else {
-        res.json({
-            errorMsg: "Invalid AdminId"
-        })
+        if (req.body.email) {
+            const user = await Users.findOne({ email: req.body.email }).lean()
+            if (user) {
+                if (user.role == "admin") {
+                    try {
+                        const { email, password } = user;
+                        const isMatched = bcrypt.compareSync(req.body.password, password)
+                        if (email && isMatched) {
+                            const { password, ...refactoredUserObj } = user
+                            res.json({
+                                msg: "You have logged in as Admin successfully",
+                                isLogedin: true,
+                                userData: refactoredUserObj
+                            })
+                        }
+                        else {
+                            res.json({
+                                errorMsg: "Invalid Password"
+                            })
+                        }
+                    }
+                    catch (err) {
+                        console.log(err)
+                    }
+                } else {
+                    res.json({
+                        errorMsg: "User cannot login without AdminId"
+                    })
+                }
+            }
+            else {
+                res.json({
+                    errorMsg: "Admin doesn't exist"
+                })
+            }
+        } else {
+            res.json({
+                errorMsg: "Invalid Email"
+            })
+        }
     }
-
-
 });
 
 module.exports = router;

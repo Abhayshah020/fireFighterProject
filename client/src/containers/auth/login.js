@@ -24,6 +24,13 @@ const Login = () => {
             return ""
         }
     }
+    const displayRequired=()=>{
+        if (showAdminIdInput){
+            return ""
+        }else{
+        //  required('Required')
+        }
+    }
 
     const loginSchema = Yup.object().shape({
         email: Yup.string().email('Invalid email').required('Required'),
@@ -65,10 +72,9 @@ const Login = () => {
                             console.log(data.isLogedin)
                             if (data.isLogedin) {
                                 dispatch(addUserDetails(data.userData))
-                                message.success(data.msg, [0.8])
-                                
+                                message.success(data.msg, [1.4])                              
                             } else {
-                                message.error(data.errorMsg, [1.2])
+                                message.error(data.errorMsg, [1.8])
                             }
                             // resetForm({ values: '' })
                         }}
@@ -125,8 +131,3 @@ const Login = () => {
 }
 
 export default Login;
-
-
-
-
-

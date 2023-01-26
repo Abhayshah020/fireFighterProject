@@ -65,11 +65,15 @@ const Register = () => {
               password: "",
               confirmPassword: "",
               role:"",
-              adminId:random(),
+              adminId:"",
             }}
             validationSchema={registerSchema}
             onSubmit={async (values, { resetForm }) => {
-              console.log(values)
+              if(values.role == "admin"){
+                values.adminId =random()
+              }else{
+                values.adminId=""
+              }
               const { confirmPassword, ...updatedValues } = values
               const requestOptions = {
                 method: "POST",
@@ -79,10 +83,11 @@ const Register = () => {
               try {
                 const res = await fetch(`${process.env.REACT_APP_API_URL}/register`, requestOptions)
                 const data = await res.json()
-                console.log(data.isRegistered)
+
+                // console.log(data.isRegistered)
                 if (data.isRegistered) {
                   message.success(data.msg, [2])
-                  navigate('/')
+                  // navigate('/')
                 } else {
                   message.error(data.msg, [2])
                 }
@@ -91,7 +96,7 @@ const Register = () => {
               }
             }}
           >
-
+       
 
             {({ errors, touched }) => (
               <Form>
