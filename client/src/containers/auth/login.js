@@ -10,25 +10,25 @@ import img2 from '../../img/background.png'
 import img3 from '../../img/avatar.svg'
 import { message } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faContactBook, faLock,faEye, faEyeSlash, faIdBadge, faIdCard } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee, faContactBook, faLock, faEye, faEyeSlash, faIdBadge, faIdCard } from '@fortawesome/free-solid-svg-icons'
 
 const Login = () => {
-    
+
     const [showPassword, setShowPassword] = useState(true)
     const [showAdminIdInput, setshowAdminIdInput] = useState(true)
     const dispatch = useDispatch()
-    const displayId=()=>{
-        if (showAdminIdInput){
+    const displayId = () => {
+        if (showAdminIdInput) {
             return "none"
-        }else{
+        } else {
             return ""
         }
     }
-    const displayRequired=()=>{
-        if (showAdminIdInput){
+    const displayRequired = () => {
+        if (showAdminIdInput) {
             return ""
-        }else{
-        //  required('Required')
+        } else {
+            //  required('Required')
         }
     }
 
@@ -46,7 +46,7 @@ const Login = () => {
     });
 
     return (
-        
+
         <>
             <img className="wave" src={img1} />
             <div className="container">
@@ -58,7 +58,7 @@ const Login = () => {
                         initialValues={{
                             email: "",
                             password: "",
-                            adminId:""
+                            adminId: ""
                         }}
                         validationSchema={loginSchema}
                         onSubmit={async (values, { resetForm }) => {
@@ -73,7 +73,7 @@ const Login = () => {
                             // console.log(data.isLogedin)
                             if (data.isLogedin) {
                                 dispatch(addUserDetails(data.userData))
-                                message.success(data.msg, [1.4])                              
+                                message.success(data.msg, [1.4])
                             } else {
                                 message.error(data.errorMsg, [1.8])
                             }
@@ -87,7 +87,7 @@ const Login = () => {
                                 <h2 className="title">Welcome</h2>
                                 <div className="input-div one">
                                     <div className="i">
-                                    <FontAwesomeIcon icon={faContactBook} style={{color:"black"}}/>
+                                        <FontAwesomeIcon icon={faContactBook} style={{ color: "black" }} />
                                     </div>
                                     <div className="div" >
                                         <Field name="email" type="email" placeHolder="Email" />
@@ -96,7 +96,7 @@ const Login = () => {
                                 </div>
                                 <div className="input-div pass">
                                     <div className="i">
-                                    <FontAwesomeIcon onClick={() => setShowPassword(!showPassword)} icon={showPassword ? faEyeSlash : faEye} style={{color:"black",cursor:"pointer"}} />
+                                        <FontAwesomeIcon onClick={() => setShowPassword(!showPassword)} icon={showPassword ? faEyeSlash : faEye} style={{ color: "black", cursor: "pointer" }} />
                                     </div>
                                     <div className="div">
                                         <Field name="password" type={showPassword ? 'password' : 'text'} placeHolder="Password" />
@@ -105,21 +105,21 @@ const Login = () => {
                                     </div>
                                 </div>
 
-                                <div className="input-div pass" style={{display:displayId()}} >
+                                <div className="input-div pass" style={{ display: displayId() }} >
                                     <div className="i">
-                                    <FontAwesomeIcon icon={faIdCard} style={{color:"black"}}/>
+                                        <FontAwesomeIcon icon={faIdCard} style={{ color: "black" }} />
                                     </div>
                                     <div className="div">
                                         <Field name="adminId" type="text" placeHolder="AdminId" />
                                         {errors.adminId && touched.adminId ? <div className="validaton-message">{errors.adminId}</div> : null}
 
                                     </div>
-                                </div>                                                       
-                               
+                                </div>
+
                                 <button type="submit" className="btn">Submit</button>
                                 <Link to="/register" className="user_name"><a href="#">New here? we will be happy to have you on board</a>
-                                <input type="submit" className="btn-login" value="Register Now!" /></Link>
-                                <input type="button" onClick={() => setshowAdminIdInput(!showAdminIdInput)} value={showAdminIdInput? "Login As User":"Login As Admin"} className='inputAdminId'/>
+                                    <input type="submit" className="btn-login" value="Register Now!" /></Link>
+                                <input type="button" onClick={() => setshowAdminIdInput(!showAdminIdInput)} value={showAdminIdInput ? "Login As User" : "Login As Admin"} className='inputAdminId' />
                             </Form>
                         )}
                     </Formik>
