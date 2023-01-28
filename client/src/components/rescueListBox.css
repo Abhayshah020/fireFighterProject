@@ -58,7 +58,10 @@
     margin-top: 40px;
     margin-left: 700px;
 }
-
+.rescueUserListTittle{
+    margin-top: 40px;
+    margin-left: 100px;
+}
 .inputFieldSubmit {
     display: block;
     width: 100%;
@@ -88,10 +91,21 @@
 .formTitle {
     margin: 10px 0px 20px 150px;
 }
+/* .userFormTitle {
+    
+} */
 
 .editButton{
     margin-right: 4px;
     padding: 5px;
+    width: 50px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+.acceptListBox{
+    margin-right: 10px;
+    padding: 10px;
     border-radius: 10px;
     border: none;
     cursor: pointer;
@@ -101,4 +115,30 @@
     border-radius: 10px;
     border: none;
     cursor: pointer;
+}
+.declineListBox{
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+/* .declineListBox .deleteButton.acceptListBox */
+.deleteButton:hover,.editButton:hover,.acceptListBox:hover,.declineListBox:hover{
+    background-color: aqua;
+}
+.missionBox{
+    display: flex;
+    background-color: rgb(205, 173, 98);
+    margin: 10px auto;
+    margin-right: 75px;
+    height: 80px;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    list-style: none;
+    border-radius: 10px;
+}
+.missionListBox{
+    margin: 0px auto ;
 }

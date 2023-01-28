@@ -11,7 +11,7 @@ import { message } from 'antd';
 
 const DropDownButton = () => {
 
-  const { name } = useSelector(state => state.user)
+  const { name,email } = useSelector(state => state.user)
   const dispatch = useDispatch()
   const triggerLogout = () => {
   dispatch(logoutResetDetails())
@@ -24,7 +24,7 @@ const DropDownButton = () => {
         <>
         <div className='profileLogoInsideBox' >
           <img src={img1} className="profileUserLogo" />
-          @{name}        
+          @{email}        
         </div>
           
         </>

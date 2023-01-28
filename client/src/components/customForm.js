@@ -5,7 +5,10 @@ import * as Yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFlag, faUser } from '@fortawesome/free-solid-svg-icons'
 import { message } from 'antd';
+import { useDispatch,useSelector } from 'react-redux'
+
 const CustomForm = () => {
+    const { _id,role } = useSelector(state => state.user)
     const [submit, setSubmit] = useState(true)
     const rescueFormSchema = Yup.object().shape({
         name: Yup.string()
