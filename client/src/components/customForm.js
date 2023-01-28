@@ -5,10 +5,10 @@ import * as Yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFlag, faUser } from '@fortawesome/free-solid-svg-icons'
 import { message } from 'antd';
-import { useDispatch,useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const CustomForm = () => {
-    const { _id,role } = useSelector(state => state.user)
+    const { _id, role } = useSelector(state => state.user)
     const [submit, setSubmit] = useState(true)
     const rescueFormSchema = Yup.object().shape({
         name: Yup.string()
@@ -19,7 +19,7 @@ const CustomForm = () => {
             .min(2, 'Too Short!')
             .max(50, 'Too Long!')
             .required('Required'),
-            phone: Yup.string()
+        phone: Yup.string()
             .min(2, 'Too Short!')
             .max(50, 'Too Long!')
             .required('Required'),
@@ -68,7 +68,7 @@ const CustomForm = () => {
                                 {errors.phone && touched.phone ? <div className="valdMessageDown">{errors.phone}</div> : null}
                             </div>
 
-                            <button type="submit" className='inputFieldSubmit' onClick={() => setSubmit(true)}><FontAwesomeIcon icon={faFlag} style={{ marginRight: '5px' }}/>Rescue Now!</button>
+                            <button type="submit" className='inputFieldSubmit' onClick={() => setSubmit(true)}><FontAwesomeIcon icon={faFlag} style={{ marginRight: '5px' }} />Rescue Now!</button>
                         </Form>
                     )}
                 </Formik>

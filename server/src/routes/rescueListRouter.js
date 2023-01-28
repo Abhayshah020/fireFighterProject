@@ -55,5 +55,21 @@ router.delete("/rescueList", async (req, res) => {
   }
   });
 
+  router.put("/rescueList", async (req, res) => {
+    try {
+      const data = await RescueList.findByIdAndUpdate(req.body._id, req.body)
+      if(data){
+        res.json({
+          msg: "Rescue Mission Updated Successfully!",
+          isEdit:true
+      })
+      }
+      else{
+        res.json({msg:"something went wrong"})
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  });
 
 module.exports = router;

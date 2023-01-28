@@ -1,17 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux'
 import './rescueListBox.css'
-import { message, Popconfirm,Button, Modal, Space } from 'antd';
+import { message, Popconfirm, Button, Modal, Space } from 'antd';
 import { ExclamationCircleFilled } from '@ant-design/icons';
+import { Formik, Field, Form } from 'formik';
+import * as Yup from 'yup';
+import EditForm from "./editForm";
 const { confirm } = Modal;
 
 const RescueListBox = (props) => {
    const { _id, role } = useSelector(state => state.user)
+   const [isModalOpen, setIsModalOpen] = useState(false);
+
+   const rescueListSchema = Yup.object().shape({
+      catagoryName: Yup.string()
+         .min(2, "Too Short!")
+         .max(100, "Too Long!")
+         .required("Required"),
+
+      minimumDeliveryPrice: Yup.string()
+         .required("Required"),
+   });
+
+   const showModal = () => {
+      setIsModalOpen(true);
+   };
+   const handleOk = () => {
+      setIsModalOpen(false);
+   };
+   const handleCancel = () => {
+      setIsModalOpen(false);
+   };
+
    const showDeleteConfirm = () => {
       confirm({
-         title: 'Are you sure delete this task?',
+         title: role == "admin" ? 'Are you sure delete this task?' : 'Are you sure decline this task?',
          icon: <ExclamationCircleFilled />,
-         content: 'Some descriptions',
+         content: role == "admin" ? 'Are You Sure You Want To Delete The Rescue Mission?' : 'Are You Sure You Want To Decline The Rescue Mission?',
          okText: 'Yes',
          okType: 'danger',
          cancelText: 'No',
@@ -32,9 +57,7 @@ const RescueListBox = (props) => {
             };
          },
          onCancel() {
-
          },
-
       });
    };
 
@@ -59,17 +82,20 @@ const RescueListBox = (props) => {
 
    return (
       <>
+         <Modal title={role == "admin" ? "Edit The Rescue Details?" : "Congratulation!"} footer={null} open={isModalOpen} onCancel={handleCancel}>
+            {role == "admin" ? <EditForm item={props.item} /> : "Your Rescue Mission Is Accepted Successfully!"}
+         </Modal>
          <div className={role == "admin" ? 'userBox' : 'missionBox'} >
             <div className={role == "admin" ? 'userListBox' : 'missionListBox'}>Contacted Person Name:<br />{props.item.name}</div>
             <div className={role == "admin" ? 'userListBox' : 'missionListBox'}>Rescue Address:<br />{props.item.address}</div>
             <div className={role == "admin" ? 'userListBox' : 'missionListBox'}>Contacted Person Name:<br />{props.item.phone}</div>
             <div className={role == "admin" ? 'userListBox' : 'missionListBox'}>
-               <button className={role == "admin" ? 'editButton' : 'acceptListBox'}>
+               <button className={role == "admin" ? 'editButton' : 'acceptListBox'} onClick={showModal}>
                   {editAccept()}
                </button>
-                  <button className={role == "admin" ? 'deleteButton' : 'declineListBox'} onClick={showDeleteConfirm}>
-                     {deleteDecline()}
-                  </button>
+               <button className={role == "admin" ? 'deleteButton' : 'declineListBox'} onClick={showDeleteConfirm}>
+                  {deleteDecline()}
+               </button>
             </div>
          </div>
 

@@ -146,3 +146,30 @@
 .missionListBox{
     margin: 0px auto ;
 }
+
+.editForm{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.fieldEditForm{
+    padding: 10px;
+    margin: 20px auto;
+}
+.editFormSubmitButton{
+    padding: 8px;
+    border-radius: 8px;
+    background-color: #ca9148;
+    border: none;
+    cursor: pointer;
+    margin: 10px 0 20px 0;
+    margin-left: 40px;
+    transition: 0.3s ease;
+}
+.editFormSubmitButton:hover{
+    background-color: #e8b879;
+}
+.errorEditForm{
+    margin-top: -20px;
+    color: #ff3300;
+}

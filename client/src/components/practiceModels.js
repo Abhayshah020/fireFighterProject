@@ -1,28 +1,28 @@
-import { ExclamationCircleFilled } from '@ant-design/icons';
-import { Button, Modal, Space } from 'antd';
-const { confirm } = Modal;
-
-const showDeleteConfirm = () => {
-  confirm({
-    title: 'Are you sure delete this task?',
-    icon: <ExclamationCircleFilled />,
-    content: 'Some descriptions',
-    okText: 'Yes',
-    okType: 'danger',
-    cancelText: 'No',
-    onOk() {
-      console.log('OK');
-    },
-    onCancel() {
-      console.log('Cancel');
-    },
-  });
+import { Button, Modal } from 'antd';
+import { useState } from 'react';
+const PracticeModels = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  return (
+    <>
+      <Button type="primary" onClick={showModal}>
+        Open Modal
+      </Button>
+      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Modal>
+    </>
+  );
 };
-
-const PracticeModels = () => (
-    <Button onClick={showDeleteConfirm}>
-      Delete
-    </Button>
-);
 
 export default PracticeModels;
