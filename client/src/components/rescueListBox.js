@@ -1,15 +1,45 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux'
 import './rescueListBox.css'
-import { message, Popconfirm } from 'antd';
+import { message, Popconfirm,Button, Modal, Space } from 'antd';
+import { ExclamationCircleFilled } from '@ant-design/icons';
+const { confirm } = Modal;
 
 const RescueListBox = (props) => {
    const { _id, role } = useSelector(state => state.user)
-   const confirm = () => {
-      message.success('Click on Yes');
+   const showDeleteConfirm = () => {
+      confirm({
+         title: 'Are you sure delete this task?',
+         icon: <ExclamationCircleFilled />,
+         content: 'Some descriptions',
+         okText: 'Yes',
+         okType: 'danger',
+         cancelText: 'No',
+         onOk() {
+            if (role == "admin") {
+               const requestOptions = {
+                  method: "DELETE",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ _id: props.item._id }),
+               };
+               const res = fetch(
+                  `${process.env.REACT_APP_API_URL}/rescueList`,
+                  requestOptions
+               );
+               message.success('you have deleted the rescue mission');
+            } else {
+               message.success('you have declined the rescue mission');
+            };
+         },
+         onCancel() {
+
+         },
+
+      });
    };
+
    const cancel = () => {
-      message.error('Click on No');
+
    };
    const editAccept = () => {
       if (role == "admin") {
@@ -29,7 +59,7 @@ const RescueListBox = (props) => {
 
    return (
       <>
-         <div className={role == "admin" ? 'userBox' : 'missionBox'}>
+         <div className={role == "admin" ? 'userBox' : 'missionBox'} >
             <div className={role == "admin" ? 'userListBox' : 'missionListBox'}>Contacted Person Name:<br />{props.item.name}</div>
             <div className={role == "admin" ? 'userListBox' : 'missionListBox'}>Rescue Address:<br />{props.item.address}</div>
             <div className={role == "admin" ? 'userListBox' : 'missionListBox'}>Contacted Person Name:<br />{props.item.phone}</div>
@@ -37,18 +67,9 @@ const RescueListBox = (props) => {
                <button className={role == "admin" ? 'editButton' : 'acceptListBox'}>
                   {editAccept()}
                </button>
-               <Popconfirm
-                  title={role == "admin" ? "Delete the task" : "Decline the task"}
-                  description={role == "admin" ? "Are you sure to delete this task?" : "Are you sure to decline this task?"}
-                  onConfirm={confirm}
-                  onCancel={cancel}
-                  okText="Yes"
-                  cancelText="No"
-               >
-                  <button className={role == "admin" ? 'deleteButton' : 'declineListBox'}>
+                  <button className={role == "admin" ? 'deleteButton' : 'declineListBox'} onClick={showDeleteConfirm}>
                      {deleteDecline()}
                   </button>
-               </Popconfirm>
             </div>
          </div>
 

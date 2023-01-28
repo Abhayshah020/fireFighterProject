@@ -1,20 +1,28 @@
-import { message, Popconfirm } from 'antd';
-const confirm = () => {
-  message.success('Click on Yes');
+import { ExclamationCircleFilled } from '@ant-design/icons';
+import { Button, Modal, Space } from 'antd';
+const { confirm } = Modal;
+
+const showDeleteConfirm = () => {
+  confirm({
+    title: 'Are you sure delete this task?',
+    icon: <ExclamationCircleFilled />,
+    content: 'Some descriptions',
+    okText: 'Yes',
+    okType: 'danger',
+    cancelText: 'No',
+    onOk() {
+      console.log('OK');
+    },
+    onCancel() {
+      console.log('Cancel');
+    },
+  });
 };
-const cancel = () => {
-  message.error('Click on No');
-};
+
 const PracticeModels = () => (
-  <Popconfirm
-    title="Delete the task"
-    description="Are you sure to delete this task?"
-    onConfirm={confirm}
-    onCancel={cancel}
-    okText="Yes"
-    cancelText="No"
-  >
-    <>Delete</>
-  </Popconfirm>
+    <Button onClick={showDeleteConfirm}>
+      Delete
+    </Button>
 );
+
 export default PracticeModels;

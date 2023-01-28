@@ -44,6 +44,16 @@ router.get("/rescueList", async (req, res) => {
     }
 });
 
+router.delete("/rescueList", async (req, res) => {
+  try {
+    const data = await RescueList.findByIdAndDelete(req.body._id)
+    if(data){
+      res.json({msg: 'Rescue Mission Deleted successfully'})
+    }
+  } catch (err) {
+      console.log(err);
+  }
+  });
 
 
 module.exports = router;
