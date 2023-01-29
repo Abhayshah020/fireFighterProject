@@ -6,7 +6,7 @@ import RescueListBox from "./rescueListBox";
 import NoData from "./noData";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation, faExclamation, faExclamationCircle, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
-import EditForm from "./editForm";
+
 const RescueList = () => {
     const { _id } = useSelector(state => state.user)
     const { name, role } = useSelector(state => state.user)

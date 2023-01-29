@@ -6,7 +6,6 @@ import img1 from '../../img/wave1.png'
 import img2 from '../../img/wave2.png'
 import '../../components/user.css'
 const AdminDashboard = () => {
-    const {_id} =useSelector(state=>state.user)
     const { name,role } = useSelector(state => state.user)
     return (
         <>

@@ -23,6 +23,7 @@ const CustomForm = () => {
             .min(2, 'Too Short!')
             .max(50, 'Too Long!')
             .required('Required'),
+
     });
     return (
         <>
@@ -32,11 +33,12 @@ const CustomForm = () => {
                     initialValues={{
                         name: "",
                         address: "",
-                        phone: ""
+                        phone: "",
+                        date:"",
                     }}
                     validationSchema={rescueFormSchema}
                     onSubmit={async (values, { resetForm }) => {
-                        console.log(values)
+                        values.date=new Date().toString()
                         const requestOptions = {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
@@ -53,7 +55,6 @@ const CustomForm = () => {
                 >
                     {({ errors, touched }) => (
                         <Form>
-
                             <div>
                                 <Field name="name" type="text" placeHolder="Contact Personal Name" className='inputField' />
                                 {errors.name && touched.name ? <div className="valdMessage">{errors.name}</div> : null}
@@ -68,7 +69,10 @@ const CustomForm = () => {
                                 {errors.phone && touched.phone ? <div className="valdMessageDown">{errors.phone}</div> : null}
                             </div>
 
-                            <button type="submit" className='inputFieldSubmit' onClick={() => setSubmit(true)}><FontAwesomeIcon icon={faFlag} style={{ marginRight: '5px' }} />Rescue Now!</button>
+                            <button type="submit" className='inputFieldSubmit' onClick={() => setSubmit(true)}>
+                                <FontAwesomeIcon icon={faFlag} style={{ marginRight: '5px' }} />
+                                Rescue Now!
+                            </button>
                         </Form>
                     )}
                 </Formik>

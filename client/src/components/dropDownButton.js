@@ -22,10 +22,13 @@ const DropDownButton = () => {
       key: '1',
       label: (
         <>
+        <Link to="/profile" style={{color:"black"}}>
         <div className='profileLogoInsideBox' >
           <img src={img1} className="profileUserLogo" />
-          @{email}        
+          #{email}        
         </div>
+        </Link>
+
           
         </>
       ),

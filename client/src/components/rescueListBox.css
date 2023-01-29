@@ -143,6 +143,19 @@
     list-style: none;
     border-radius: 10px;
 }
+.missionNewsBox{
+    display: flex;
+    background-color: rgb(98, 152, 205);
+    margin: 10px auto;
+    margin-right: 75px;
+    height: 130px;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    list-style: none;
+    border-radius: 10px;
+}
 .missionListBox{
     margin: 0px auto ;
 }

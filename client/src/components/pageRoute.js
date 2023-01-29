@@ -9,6 +9,9 @@ import Register from '../containers/auth/register';
 import { useSelector } from "react-redux";
 import Home from '../containers/auth/home';
 import NavBar from '../components/navBar';
+import UserListDashboard from '../containers/admin/userListDashboard';
+import NotificationDashboard from '../containers/sharedScreen/notificationDashboard';
+import Profile from '../containers/sharedScreen/profile';
 
 const PageRoute = ()=> {
   const {email,role} =useSelector(state=>state.user)
@@ -37,8 +40,10 @@ const UserScreens = () => {
   return (
     <Routes>
     <Route exact path="/" element={<UserDashboard />} />
+    <Route exact path="/profile" element={<Profile />} />
     <Route exact path="/about" element={<AboutUsDashboard />} />
     <Route exact path="/contact" element={<ContactDashboard />} />
+    <Route exact path="/notifications" element={<NotificationDashboard />} />
     </Routes>
   )
 }
@@ -46,6 +51,9 @@ const AdminScreens = () => {
   return (
     <Routes>
     <Route exact path="/" element={<AdminDashboard />} />
+    <Route exact path="/profile" element={<Profile />} />
+    <Route exact path="/users" element={<UserListDashboard />} />
+    <Route exact path="/notifications" element={<NotificationDashboard />} />
     </Routes>
   )
 }
