@@ -81,15 +81,16 @@ const DropDownButton = () => {
       key: '4',
       label: (
         <>
+        
           <div onClick={() => triggerLogout()}>
+          <Link to="/" style={{ color: "black" }}>
             <FontAwesomeIcon icon={faSignOut} style={{ color: "black" }} />
-            <button className="button_logout">
-              <Link to="/" style={{ color: "black" }}>
-                Logout
-              </Link>
+            <button className="button_logout">             
+                Logout             
             </button>
+            </Link>
           </div>
-
+         
         </>
       ),
     },

@@ -70,14 +70,14 @@ const Login = () => {
                             };
                             const res = await fetch(`${process.env.REACT_APP_API_URL}/login`, requestOptions);
                             const data = await res.json()
-                            // console.log(data.isLogedin)
+                            console.log(data.isLogedin)
                             if (data.isLogedin) {
                                 dispatch(addUserDetails(data.userData))
                                 message.success(data.msg, [1.4])
                             } else {
                                 message.error(data.errorMsg, [1.8])
                             }
-                            // resetForm({ values: '' })
+                            resetForm({ values: '' })
                         }}
                     >
 

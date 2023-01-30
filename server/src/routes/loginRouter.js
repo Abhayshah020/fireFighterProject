@@ -56,7 +56,7 @@ router.post("/login", async (req, res) => {
             if (user) {
                 if (user.role == "admin") {
                     try {
-                        const { email, password } = user;
+                        const { email, password, adminId } = user;
                         const isMatched = bcrypt.compareSync(req.body.password, password)
                         if (email && isMatched) {
                             const { password, ...refactoredUserObj } = user

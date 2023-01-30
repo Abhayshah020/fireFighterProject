@@ -9,7 +9,7 @@ import img1 from '../img/firefighterLogo.jpg'
 import img2 from '../img/firefighter.jpg'
 const CredentialsProfile = () => {
 
-    const { _id, role, name, address, phone, email } = useSelector(state => state.user)
+    const { _id, role, name, address, phone, email, adminId } = useSelector(state => state.user)
     const [file, setFile] = useState(null)
     const [userDetails, setUserDetails] = useState({})
 
@@ -69,6 +69,7 @@ const CredentialsProfile = () => {
                     <h6>Phone: {phone}</h6>
                     <h6>Email: {email}</h6><br />
                     <h6>Account: {role}</h6>
+                    <h6>AdminId: #{adminId}</h6>
                 </div>
                 <div>
                     <Link to="/" >
