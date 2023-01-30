@@ -1,32 +1,16 @@
 
-* {
-    padding: 0;
-    margin: 0;
-}
-
-footer {
-    position: relative;
-    /* bottom: 10px; */
-}
-
-@media (max-height:800px) {
-    footer {
-        position: static;
-    }
-    header {
-        padding-top: 40px;
-    }
-}
 .footerIcon{
     margin-top: 10px;
 }
+
 .footer-distributed {
-    background-color: #2d2a30;
+    background-color: rgba(30, 14, 41, 0.6);
     box-sizing: border-box;
+    margin-top: 132px;
     width: 100%;
     text-align: left;
     font: bold 16px sans-serif;
-    padding: 50px 30px;
+    padding: 20px;
 }
 
 .footer-distributed .footer-left, .footer-distributed .footer-center, .footer-distributed .footer-right {
@@ -42,7 +26,7 @@ footer {
 
 .footer-distributed h3 {
     color: #ffffff;
-    font: normal 36px 'Cookie', cursive;
+    font-size:36px;
     margin: 0;
 }
 
@@ -63,6 +47,10 @@ footer {
     line-height: 1.8;
     text-decoration: none;
     color: inherit;
+    transition: 0.5s;
+}
+.footer-distributed .footer-links a:hover {
+    text-decoration: underline;
 }
 
 .footer-distributed .footer-company-name {
@@ -89,11 +77,6 @@ footer {
     background-color:#3F71EA;
     width: 24px;
 }
-/* 
-.footer-distributed .footer-center .i.fa-envelope {
-    font-size: 17px;
-    line-height: 38px;
-} */
 
 .footer-distributed .footer-center p {
     display: inline-block;
@@ -112,7 +95,6 @@ footer {
 .footer-distributed .footer-center p a {
     color: #e0ac1c;
     text-decoration: none;
-    ;
 }
 
 /* Footer Right */
@@ -151,6 +133,7 @@ footer {
     font-size: 20px;
     color: #ffffff;
     text-align: center;
+    justify-content: center;
     line-height: 35px;
     margin-right: 3px;
     margin-bottom: 5px;

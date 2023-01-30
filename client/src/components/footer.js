@@ -2,7 +2,7 @@
 import './footer.css'
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faContactBook, faGamepad, faHome, faLock ,faGoogle, faMagic, faMap, faLink, faPhone, faEnvelope, faMapMarker} from '@fortawesome/free-solid-svg-icons'
+import {faGamepad, faHome, faMagic, faMap, faLink, faPhone, faEnvelope, faMapMarker} from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 
@@ -12,7 +12,6 @@ const Footer = () => {
     return (
         <>
             <footer class="footer-distributed">
-
                 <div class="footer-left">
                     <h3>Fire<span>Fighter</span></h3>
 
@@ -49,7 +48,7 @@ const Footer = () => {
                          She is just a limp noodle and wants to sleep all the time. I sure hope that things get better soon.
                     </p>
                     <div class="footer-icons">
-                        <a href="#"><FontAwesomeIcon icon={faGamepad} className="i1"/></a>
+                        <a href="#"><FontAwesomeIcon icon={faGamepad} className="i1"/></a>                       
                         <a href="#"><FontAwesomeIcon icon={faHome} className="i1"/></a>
                         <a href="#"><FontAwesomeIcon icon={faMagic} className="i1"/></a>
                         <a href="#"><FontAwesomeIcon icon={faMap} className="i1"/></a>
@@ -57,9 +56,6 @@ const Footer = () => {
                     </div>
                 </div>
             </footer>
-
-
-
         </>
     )
 }

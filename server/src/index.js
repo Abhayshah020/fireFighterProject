@@ -5,6 +5,7 @@ const loginRouter = require('./routes/loginRouter')
 const registerRouter = require('./routes/registerRouter')
 const rescueListRouter = require('./routes/rescueListRouter')
 const userRouter = require('./routes/userRouter')
+const profileRouter = require('./routes/profileRouter')
 require('dotenv').config()
 
 const app = express()
@@ -15,6 +16,7 @@ app.use(registerRouter);
 app.use(loginRouter);
 app.use(rescueListRouter);
 app.use(userRouter);
+app.use(profileRouter);
 
 connect()
 

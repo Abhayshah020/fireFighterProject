@@ -12,6 +12,7 @@ import NavBar from '../components/navBar';
 import UserListDashboard from '../containers/admin/userListDashboard';
 import NotificationDashboard from '../containers/sharedScreen/notificationDashboard';
 import Profile from '../containers/sharedScreen/profile';
+import CredentialsProfile from './credentialsProfile';
 
 const PageRoute = ()=> {
   const {email,role} =useSelector(state=>state.user)
@@ -22,7 +23,6 @@ const PageRoute = ()=> {
   }else{
     return <AuthScreens/>
   }
-
 }
 
 const AuthScreens = () => {
@@ -41,8 +41,6 @@ const UserScreens = () => {
     <Routes>
     <Route exact path="/" element={<UserDashboard />} />
     <Route exact path="/profile" element={<Profile />} />
-    <Route exact path="/about" element={<AboutUsDashboard />} />
-    <Route exact path="/contact" element={<ContactDashboard />} />
     <Route exact path="/notifications" element={<NotificationDashboard />} />
     </Routes>
   )

@@ -1,0 +1,58 @@
+.profilePic{
+width: 200px;
+height: 200px;
+margin: 0 0 0 10px;
+border-radius: 250px;
+}
+.profilePicsBox{
+    display: flex;
+    margin: 50px;
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px black solid;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(57, 41, 41, 0.5);
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+}
+.inputFieldProfile{
+    margin: 5px;
+
+}
+.buttonOfProfilePicsSave{
+    margin-left: 20px;
+}
+
+.profileSavePic{
+    display: flex;
+    padding: 10px;
+    width: 100px;
+    background-color: aqua;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
+}
+.fireFighterLogoProfilePic{
+    width: 270px;
+    margin: 0 50px 0 0;
+    border: 1px solid black;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+.fireFighterLogoProfilePic:hover{
+    border: 1px solid white;
+}
+.fireFighterLogoProfileUserPic{
+    width: 375px;
+    height: 270px;
+    margin: 0 50px 0 0;
+    border: 1px solid black;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+.fireFighterLogoProfileUserPic:hover{
+    border: 1px solid white;
+}

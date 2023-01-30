@@ -10,13 +10,14 @@ const initialState = {
   address:"",
   phone:"",
   _id: "",
-  role:""
+  role:"",
+  avatarName:""
 };
 
 const userSlice = (state = initialState, action) => {
   switch (action.type) {
     case ADD_USER_DETAILS:
-      const { name, email,address, _id,phone,role} = action.payload;
+      const { name, email,address,avatarName, _id,phone,role} = action.payload;
       return {
         ...state,
         name,
@@ -24,7 +25,8 @@ const userSlice = (state = initialState, action) => {
         address,
         _id,
         phone,
-        role
+        role,
+        avatarName
       };
     case REMOVE_USER_DETAILS_LOGOUT:
       return {
@@ -34,7 +36,8 @@ const userSlice = (state = initialState, action) => {
         address:"",
         _id: "",
         phone:"",
-        role:""
+        role:"",
+        avatarName:""
       };
     default:
       return state;
