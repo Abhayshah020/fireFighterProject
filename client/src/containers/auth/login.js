@@ -77,7 +77,7 @@ const Login = () => {
                             } else {
                                 message.error(data.errorMsg, [1.8])
                             }
-                            resetForm({ values: '' })
+                            // resetForm({ values: '' })
                         }}
                     >
 

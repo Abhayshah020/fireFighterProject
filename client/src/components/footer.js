@@ -44,8 +44,9 @@ const Footer = () => {
                 <div class="footer-right">
                     <p class="footer-company-about">
                         <span><strong>Fire<strong>Fighter</strong></strong></span>
-                         Things aren't going well at all with mom today.
-                         She is just a limp noodle and wants to sleep all the time. I sure hope that things get better soon.
+                            Things are not easy for <strong>Fire fighter</strong>, We should be brave and quick thinker in the face of 
+                            hostile situation and <strong>Fire Fighter</strong> should be strong enough with both physically and in mind to cope up with every situation that are thrown at them. 
+                                              
                     </p>
                     <div class="footer-icons">
                         <a href="#"><FontAwesomeIcon icon={faGamepad} className="i1"/></a>                       

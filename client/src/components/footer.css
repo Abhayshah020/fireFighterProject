@@ -116,12 +116,9 @@
     color: #ffffff;
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
-.footer-distributed .footer-icons {
-    margin-top: 25px;
-}
 
 .footer-distributed .footer-icons a {
     display: inline-block;
