@@ -1,26 +1,24 @@
-import { Button, Modal } from 'antd';
+import { Button, Drawer } from 'antd';
 import { useState } from 'react';
+
 const PracticeModels = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
-    setIsModalOpen(true);
+  const [open, setOpen] = useState(false);
+  const showDrawer = () => {
+    setOpen(true);
   };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
+  const onClose = () => {
+    setOpen(false);
   };
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        Open Modal
+      <Button onClick={showDrawer} style={{border:"none", backgroundColor:"transparent", boxShadow:'none',paddingLeft:'0'}}>
+        <h3>Settings</h3>
       </Button>
-      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      <Drawer title="Basic Drawer" placement="right" onClose={onClose} open={open}>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
-      </Modal>
+      </Drawer>
     </>
   );
 };

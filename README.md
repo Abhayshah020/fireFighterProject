@@ -1,6 +1,11 @@
 # FIRE FIGHTER
 * Reason for crearting this project was to solve the communication problem and conflict of fire fighter like two firefighter going in same place with low fire risk area.
 
+# For Starting The Project 
+* git clone https://github.com/Abhayshah020/fireFighterProject.git
+* open to terminal and change to directory client and server by "cd client" and "cd server" respectively
+* to start client and server write npm start in both terminal
+
 ## Technology Stack
 * React JS
 * React Hook

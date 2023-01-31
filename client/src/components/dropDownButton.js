@@ -8,6 +8,7 @@ import './user.css';
 import React, { useState, useEffect } from "react";
 import { message } from 'antd';
 import axios from "axios"
+import DrawerFeature from './drawer';
 
 const DropDownButton = () => {
   const { _id, role } = useSelector(state => state.user)
@@ -49,13 +50,9 @@ const DropDownButton = () => {
       key: '2',
       label: (
         <>
-          <div >
+          <div>
             <FontAwesomeIcon icon={faCog} style={{ color: "black" }} />
-            <button className="button_logout">
-              <Link to="/" style={{ color: "black" }}>
-                Settings
-              </Link>
-            </button>
+                <DrawerFeature/>
           </div>
 
         </>

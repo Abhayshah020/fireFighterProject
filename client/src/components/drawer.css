@@ -1,0 +1,22 @@
+.drawer{
+    display: grid;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.drawerInfo{
+    display: flex;
+    border: 1px #000000 solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 30px 0;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: rgb(137, 168, 105);
+    transition: 0.3s ease;
+}
+.drawerInfo:hover{
+    background-color: rgba(164, 97, 97, 0.5);
+    border: 1px solid rgb(98, 173, 185);
+}
