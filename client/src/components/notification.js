@@ -1,27 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 import axios from "axios";
 import './rescueListBox.css'
-import UserListBox from "./userListBox";
+import { Pagination } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell, faNewspaper } from '@fortawesome/free-solid-svg-icons'
+import { faBell, faDisplay, faNewspaper } from '@fortawesome/free-solid-svg-icons'
 import NotificationBox from "./notificationBox";
 
 const Notification = () => {
-    const { _id } = useSelector(state => state.user)
-    const { name, role } = useSelector(state => state.user)
+    // const { _id } = useSelector(state => state.user)
+    // const { name, role } = useSelector(state => state.user)
     const [userList, setuserList] = useState([])
-    const [usersCount, setTotalUsersCount] = useState(0)
+    const [usersCount, setTotalUsersCount] = useState(30)
 
-    const fetchAvailableItems = () => {
-        axios.get(`${process.env.REACT_APP_API_URL}/rescueList`).then((response) => {
+    const fetchAvailableItems = (page, size) => {
+        axios.get(`${process.env.REACT_APP_API_URL}/rescueList?page=${page || 1}&size=${size || 4}`).then((response) => {
             setuserList(response.data.rescueList)
+            console.log(response.data.totalRescueListCount)
+            setTotalUsersCount(response.data.totalRescueListCount)
+            console.log(usersCount)
         });
     }
 
     useEffect(() => {
         fetchAvailableItems()
-    })
+    },[])
 
     return (
         <>
@@ -34,6 +37,10 @@ const Notification = () => {
                     {userList.map((item, id) => {
                         return <NotificationBox item={item} key={id} />
                     })}
+                    <div style={{margin:"20px", display:"flex",justifyContent:'center'}}>
+                    <Pagination defaultCurrent={1} total={usersCount} defaultPageSize={4} onChange={(page,size)=>fetchAvailableItems(page,size)} />
+                    </div>
+                   
                 </>
             ) : "no data"}
 

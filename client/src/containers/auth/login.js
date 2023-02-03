@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import img1 from '../../img/wave.png'
 import img2 from '../../img/background.png'
 import img3 from '../../img/avatar.svg'
-import { message } from 'antd';
+import { Button, notification } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee, faContactBook, faLock, faEye, faEyeSlash, faIdBadge, faIdCard } from '@fortawesome/free-solid-svg-icons'
 
@@ -73,9 +73,11 @@ const Login = () => {
                             console.log(data.isLogedin)
                             if (data.isLogedin) {
                                 dispatch(addUserDetails(data.userData))
-                                message.success(data.msg, [1.4])
+                                notification.destroy();
+                                notification.success({message:data.msg,duration:1.2});
                             } else {
-                                message.error(data.errorMsg, [1.8])
+                                notification.destroy();
+                                notification.error({message:data.errorMsg,duration:1.8});
                             }
                             // resetForm({ values: '' })
                         }}

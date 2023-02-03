@@ -6,7 +6,7 @@ import '../../components/auth.css';
 import img1 from '../../img/wave.png'
 import img2 from '../../img/background.png'
 import img3 from '../../img/avatar.svg'
-import { message } from 'antd';
+import { Button, notification } from 'antd';
 import { useNavigate } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee, faContactBook, faLock, faMap, faPhone, faUser, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
@@ -37,8 +37,8 @@ const registerSchema = Yup.object().shape({
     .max(50, 'Too Long!')
     .required('Required')
     .oneOf([Yup.ref("password"), null], "Both Passwords Must Match"),
-    
-    role: Yup.string().required("Required"),
+
+  role: Yup.string().required("Required"),
 });
 
 const Register = () => {
@@ -47,7 +47,7 @@ const Register = () => {
   const navigate = useNavigate()
   const random = () => {
     return Math.random().toString(16).substr(2, 14);
-};
+  };
   return (
     <>
       <img className="wave" src={img1} />
@@ -64,15 +64,15 @@ const Register = () => {
               phone: "",
               password: "",
               confirmPassword: "",
-              role:"",
-              adminId:"",
+              role: "",
+              adminId: "",
             }}
             validationSchema={registerSchema}
             onSubmit={async (values, { resetForm }) => {
-              if(values.role == "admin"){
-                values.adminId =random()
-              }else{
-                values.adminId="#user"
+              if (values.role == "admin") {
+                values.adminId = random()
+              } else {
+                values.adminId = "#user"
               }
               const { confirmPassword, ...updatedValues } = values
               const requestOptions = {
@@ -86,17 +86,19 @@ const Register = () => {
 
                 // console.log(data.isRegistered)
                 if (data.isRegistered) {
-                  message.success(data.msg, [2])
+                  notification.destroy();
+                  notification.success({ message: data.msg, duration: 2 });
                   navigate('/')
                 } else {
-                  message.error(data.msg, [2])
+                  notification.destroy();
+                  notification.error({ message: data.msg, duration: 2 });
                 }
               } catch (err) {
                 alert(err);
               }
             }}
           >
-       
+
 
             {({ errors, touched }) => (
               <Form>

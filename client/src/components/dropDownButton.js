@@ -1,4 +1,4 @@
-import { Button, Dropdown, Space } from 'antd';
+import { Button, Dropdown, Space , notification} from 'antd';
 import { Link } from 'react-router-dom';
 import { logoutResetDetails } from "../redux/actions/userAction"
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCog, faCogs, faCommenting, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons'
 import './user.css';
 import React, { useState, useEffect } from "react";
-import { message } from 'antd';
 import axios from "axios"
 import DrawerFeature from './drawer';
 
@@ -26,11 +25,11 @@ const DropDownButton = () => {
   };
   useEffect(() => {
     fetchUserDetails();
-  });
+  }, []);
 
   const triggerLogout = () => {
     dispatch(logoutResetDetails())
-    message.success("You have Logged out Successfully", [1.4])
+    notification.success({ message: "You have Logged out Successfully", duration: 1.4 });
   }
   const items = [
     {
@@ -52,7 +51,7 @@ const DropDownButton = () => {
         <>
           <div>
             <FontAwesomeIcon icon={faCog} style={{ color: "black" }} />
-                <DrawerFeature/>
+            <DrawerFeature />
           </div>
 
         </>
@@ -78,16 +77,15 @@ const DropDownButton = () => {
       key: '4',
       label: (
         <>
-        
           <div onClick={() => triggerLogout()}>
-          <Link to="/" style={{ color: "black" }}>
-            <FontAwesomeIcon icon={faSignOut} style={{ color: "black" }} />
-            <button className="button_logout">             
-                Logout             
-            </button>
+            <Link to="/" style={{ color: "black" }}>
+              <FontAwesomeIcon icon={faSignOut} style={{ color: "black" }} />
+              <button className="button_logout">
+                Logout
+              </button>
             </Link>
           </div>
-         
+
         </>
       ),
     },

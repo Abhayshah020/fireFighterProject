@@ -30,7 +30,7 @@ router.get("/rescueList", async (req, res) => {
           const data = await RescueList.find().limit(req.query.size).skip(req.query.size* req.query.page - req.query.size)
           if(data){
               res.json({
-                msg:"Rescue list dispatch successfully",
+                  msg:"Rescue list dispatch successfully",
                   rescueList:data,
                   totalRescueListCount: totalRescueListLength.length
               })

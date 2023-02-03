@@ -13,6 +13,7 @@ import UserListDashboard from '../containers/admin/userListDashboard';
 import NotificationDashboard from '../containers/sharedScreen/notificationDashboard';
 import Profile from '../containers/sharedScreen/profile';
 import CredentialsProfile from './credentialsProfile';
+import PracticeModels from './practiceModels';
 
 const PageRoute = ()=> {
   const {email,role} =useSelector(state=>state.user)
@@ -23,6 +24,11 @@ const PageRoute = ()=> {
   }else{
     return <AuthScreens/>
   }
+  // return (
+  //   <Routes>
+  //   <Route exact path="/" element={<PracticeModels />} />
+  //   </Routes>
+  // )
 }
 
 const AuthScreens = () => {

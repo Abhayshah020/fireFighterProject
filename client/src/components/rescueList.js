@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux'
 import axios from "axios";
+import { Pagination } from 'antd';
 import './rescueListBox.css'
 import RescueListBox from "./rescueListBox";
 import NoData from "./noData";
@@ -13,16 +14,16 @@ const RescueList = () => {
     const [rescueList, setrescueList] = useState([])
     const [usersCount, setTotalUsersCount] = useState(0)
 
-    const fetchAvailableItems = () => {
-        axios.get(`${process.env.REACT_APP_API_URL}/rescueList`).then((response) => {
+    const fetchAvailableItems = (page, size) => {
+        axios.get(`${process.env.REACT_APP_API_URL}/rescueList?page=${page || 1}&size=${size || 8}`).then((response) => {
             setrescueList(response.data.rescueList)
-            setTotalUsersCount(response.data.totalUsersCount)
+            setTotalUsersCount(response.data.totalRescueListCount)
         });
     }
 
     useEffect(() => {
         fetchAvailableItems()
-    })
+    }, [])
 
     return (
         <>
@@ -32,9 +33,19 @@ const RescueList = () => {
             </h2>
             {rescueList.length > 0 ? (
                 <>
-                    {rescueList.map((item, id) => {
-                        return <RescueListBox item={item} key={id} />
-                    })}
+                <div className="paginationCss">
+                <div>
+                        {rescueList.map((item, id) => {
+                            return <RescueListBox item={item} key={id} />
+                        })}
+                    </div>
+
+                    <div >
+                        <Pagination defaultCurrent={1} total={usersCount} defaultPageSize={8} onChange={(page, size) => fetchAvailableItems(page, size)} />
+                    </div>
+                </div>
+
+
                 </>
             ) : <NoData />}
         </>
