@@ -1,0 +1,475 @@
+html {
+    overflow: scroll;
+}
+html::-webkit-scrollbar {
+    display: none;
+}
+* {
+    margin: 0;
+    padding: auto;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 40px;
+    background: rgb(113, 206, 155);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    z-index: 9;
+    top: 0;
+    left: 0;
+    position: sticky;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+
+
+.userdefault {
+    margin-right: 20px;
+    width: 47px;
+}
+
+#logo {
+    width: 40px;
+}
+
+
+h1 {
+    font-size: 50px;
+    line-height: 64px;
+    color: rgb(255, 255, 255);
+}
+
+h2 {
+    font-size: 36px;
+    line-height: 54px;
+    color: rgb(255, 255, 255);
+}
+
+h3 {
+    font-size: 33px;
+    line-height: 54px;
+    color: rgb(255, 255, 255);
+}
+
+i {
+    width: 50px;
+}
+
+h4 {
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+}
+
+h6 {
+    font-weight: 700;
+    font-size: 12px;
+
+}
+
+.ftl {
+    display: flex;
+}
+
+.fl {
+    padding-top: 10px;
+}
+
+p {
+    font-size: 16px;
+    color: rgb(54, 44, 44);
+    margin: 15px 0 20px 0;
+
+}
+.section-p2 {
+    padding: 20px 57px;
+}
+.section-p1 {
+    padding: 40px 80px;
+}
+
+.section-m1 {
+    margin: 40px 0;
+
+}
+
+body {
+    width: 100%;
+
+}
+
+.nav-menu {
+    padding-right: 38px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+}
+
+.nav-branding {
+    display: flex;
+    font-size: 1.5rem;
+
+    padding: 5px;
+
+}
+
+.cafelogo {
+    padding-top: 9px;
+}
+
+.ctinfo {
+    display: none;
+}
+
+.profilepic {
+
+    display: flex;
+}
+
+.ni {
+    padding-top: 17px;
+    padding-right: 13px;
+    padding-right: 50px;
+}
+
+.nav-link {
+    transition: 0.3s ease;
+}
+
+.nav-link:hover {
+    color: dodgerblue;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: white;
+}
+
+.logobox {
+
+    padding: 7px;
+    padding-top: 0;
+    padding-bottom: 0;
+    border: 5px solid black;
+    border-radius: 70px;
+}
+
+.logoname {
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 600;
+    color: #000000;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#hero {
+    background:rgba(0, 0, 0, 0.4) url(../../img/fireFighterHelmetJacket.jpg);
+    background-blend-mode: darken;
+
+    height: 85vh;
+    width: 100%;
+    background-position: top 25% right 0%;
+    background-size: cover;
+    padding: 0 80px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 1.2;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+
+}
+
+#hero h2 {
+    color: rgb(255, 255, 255);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+
+#mobile {
+    display: none;
+    align-items: center;
+
+}
+
+#hero h3 {
+    color: rgb(255, 249, 249);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+footer {
+
+    flex-wrap: wrap;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 80px;
+    background: rgb(113, 206, 155);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+footer .col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+
+}
+
+footer .footlogo {
+    margin-bottom: 30px;
+}
+
+footer h4 {
+    font-size: 20px;
+    padding-bottom: 20px;
+}
+
+footer p {
+    font-size: 13px;
+    margin: 0 0 8px 0;
+}
+
+footer a {
+    font-size: 13px;
+    text-decoration: none;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.span {
+    padding-bottom: 0;
+}
+
+.menu {
+    height: 45px;
+}
+
+
+.goupbtn {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    bottom: 45px;
+    right: 80px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 50px;
+    z-index: 999;
+}
+.citizenshippic{
+    margin-bottom: 10px;
+}
+
+#image-input {
+    padding-bottom: 6px;
+    padding-top: 5px;
+}
+
+.pro-container{
+    display: flex;
+    
+    align-items: center;
+    border: 1px solid black;
+    padding-top: 4px;
+    border-radius: 53px;
+    padding-left: 4px;
+    margin-right: 100px;
+    margin-left: -30px;
+    margin-bottom: 22px;
+}
+
+
+.pro-container .prod {
+    width: 350px;
+    border-radius: 50px;
+}
+
+
+.section-p2 {
+    padding: 20px 75px;
+}
+
+.pro-container .pro{
+    margin-left: 54px;
+
+}
+.pro-container .money{
+    padding-left: 190px;
+    font-size: 25px;
+}
+::selection {
+    background: rgba(26, 188, 156, 0.3);
+}
+
+.container {
+    max-width: 440px;
+    padding: 0 20px;
+    margin: 170px auto;
+}
+
+.wrapper {
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper .title {
+    height: 90px;
+    background: #16a085;
+    border-radius: 5px 5px 0 0;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper form {
+    padding: 30px 25px 25px 25px;
+}
+
+.wrapper form .row {
+    height: 45px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.wrapper form .row input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding-left: 60px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+form .row input:focus {
+    border-color: #16a085;
+    box-shadow: inset 0px 0px 2px 2px rgba(26, 188, 156, 0.25);
+}
+
+form .row input::placeholder {
+    color: #999;
+}
+
+.wrapper form .row i {
+    position: absolute;
+    width: 47px;
+    height: 100%;
+    color: #fff;
+    font-size: 18px;
+    background: #16a085;
+    border: 1px solid #16a085;
+    border-radius: 5px 0 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper form .pass {
+    margin: -8px 0 20px 0;
+}
+
+.wrapper form .pass a {
+    color: #16a085;
+    font-size: 17px;
+    text-decoration: none;
+}
+
+.wrapper form .pass a:hover {
+    text-decoration: underline;
+}
+
+.wrapper form .button input {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    padding-left: 0px;
+    background: #16a085;
+    border: 1px solid #16a085;
+    cursor: pointer;
+}
+
+form .button input:hover {
+    background: #12876f;
+}
+
+.wrapper form .signup-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 17px;
+}
+
+.wrapper form .signup-link a {
+    color: #16a085;
+    text-decoration: none;
+}
+
+form .signup-link a:hover {
+    text-decoration: underline;
+}
+.recom {
+    font-family: cursive;
+    display: flex;
+    justify-content: center;
+    font-size: 35px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+.pro-container .pro .des .p3 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.pro-container .pro .p2{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.pro-container .pro h5 {
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+

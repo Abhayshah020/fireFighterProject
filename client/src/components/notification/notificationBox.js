@@ -1,12 +1,12 @@
 import React from "react";
-import './rescueListBox.css'
+import '../cssFile/rescueListBox.css'
 import { useSelector } from 'react-redux'
 
 const NotificationBox = (props) => {
-    const { name, role } = useSelector(state => state.user)
+    const { role } = useSelector(state => state.user)
     return (
         <>
-            <div className='missionNewsBox' style={{backgroundColor:role=="admin"?'':"#CDAD62"}} >
+            <div className='missionNewsBox' style={{backgroundColor:role==="admin"?'':"#CDAD62"}} >
                 <div className='missionListBox' style={{margin:'25px'}}>
                     <div style={{marginBottom:'10px'}}><strong style={{textDecoration:'underline'}}>Fire Broke Out in {props.item.address}!</strong></div>
                 {props.item.date}, In {props.item.address}: Fire broke out in {props.item.address} area.

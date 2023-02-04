@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Pagination } from 'antd';
-import './rescueListBox.css'
+import '../cssFile/rescueListBox.css'
 import UserListBox from "./userListBox";
 
 const UserList = () => {

@@ -1,4 +1,4 @@
-import '../../components/auth.css';
+import '../../components/cssFile/auth.css';
 import React, { useState } from "react";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -8,9 +8,9 @@ import { Link } from 'react-router-dom';
 import img1 from '../../img/wave.png'
 import img2 from '../../img/background.png'
 import img3 from '../../img/avatar.svg'
-import { Button, notification } from 'antd';
+import { notification } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faContactBook, faLock, faEye, faEyeSlash, faIdBadge, faIdCard } from '@fortawesome/free-solid-svg-icons'
+import { faContactBook, faEye, faEyeSlash, faIdCard } from '@fortawesome/free-solid-svg-icons'
 
 const Login = () => {
 
@@ -24,13 +24,6 @@ const Login = () => {
             return ""
         }
     }
-    const displayRequired = () => {
-        if (showAdminIdInput) {
-            return ""
-        } else {
-            //  required('Required')
-        }
-    }
 
     const loginSchema = Yup.object().shape({
         email: Yup.string().email('Invalid email').required('Required'),
@@ -41,17 +34,26 @@ const Login = () => {
         adminId: Yup.string()
             .min(8, 'Too Short!')
             .max(50, 'Too Long!'),
-        password: Yup.string().required('Required'),
+    });
 
+    const loginUserSchema = Yup.object().shape({
+        email: Yup.string().email('Invalid email').required('Required'),
+        password: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Required'),
+        adminId: Yup.string()
+            .min(8, 'Too Short!')
+            .max(50, 'Too Long!').required('Required'),
     });
 
     return (
 
         <>
-            <img className="wave" src={img1} />
+            <img className="wave" src={img1} alt="loading"/>
             <div className="container">
                 <div className="img">
-                    <img src={img2} />
+                    <img src={img2} alt="loading"/>
                 </div>
                 <div className="login-content">
                     <Formik
@@ -60,9 +62,8 @@ const Login = () => {
                             password: "",
                             adminId: ""
                         }}
-                        validationSchema={loginSchema}
+                        validationSchema={showAdminIdInput?loginSchema:loginUserSchema}
                         onSubmit={async (values, { resetForm }) => {
-                            console.log(values)
                             const requestOptions = {
                                 method: "POST",
                                 headers: { "Content-Type": "application/json" },
@@ -70,11 +71,10 @@ const Login = () => {
                             };
                             const res = await fetch(`${process.env.REACT_APP_API_URL}/login`, requestOptions);
                             const data = await res.json()
-                            console.log(data.isLogedin)
                             if (data.isLogedin) {
                                 dispatch(addUserDetails(data.userData))
                                 notification.destroy();
-                                notification.success({message:data.msg,duration:1.2});
+                                notification.success({message:data.msg,duration:1.2,placement:'topLeft'});
                             } else {
                                 notification.destroy();
                                 notification.error({message:data.errorMsg,duration:1.8});
@@ -85,7 +85,7 @@ const Login = () => {
 
                         {({ errors, touched }) => (
                             <Form>
-                                <img src={img3} />
+                                <img src={img3} alt="loading"/>
                                 <h2 className="title">Welcome</h2>
                                 <div className="input-div one">
                                     <div className="i">
@@ -119,7 +119,7 @@ const Login = () => {
                                 </div>
 
                                 <button type="submit" className="btn">Submit</button>
-                                <Link to="/register" className="user_name"><a href="#">New here? we will be happy to have you on board</a>
+                                <Link to="/register" className="user_name">New here? we will be happy to have you on board
                                     <input type="submit" className="btn-login" value="Register Now!" /></Link>
                                 <input type="button" onClick={() => setshowAdminIdInput(!showAdminIdInput)} value={showAdminIdInput ? "Login As User" : "Login As Admin"} className='inputAdminId' />
                             </Form>

@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
-// import { useSelector } from 'react-redux'
 import axios from "axios";
-import './rescueListBox.css'
+import '../cssFile/rescueListBox.css'
 import { Pagination } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell, faDisplay, faNewspaper } from '@fortawesome/free-solid-svg-icons'
+import { faBell } from '@fortawesome/free-solid-svg-icons'
 import NotificationBox from "./notificationBox";
 
 const Notification = () => {
-    // const { _id } = useSelector(state => state.user)
-    // const { name, role } = useSelector(state => state.user)
+
     const [userList, setuserList] = useState([])
     const [usersCount, setTotalUsersCount] = useState(30)
 

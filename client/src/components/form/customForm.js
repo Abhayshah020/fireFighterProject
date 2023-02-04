@@ -1,15 +1,13 @@
-import './rescueListBox.css'
-import React, { useState, useEffect } from "react";
+import '../cssFile/rescueListBox.css'
+import React from "react";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFlag, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faFlag } from '@fortawesome/free-solid-svg-icons'
 import { message } from 'antd';
-import { useDispatch, useSelector } from 'react-redux'
 
 const CustomForm = () => {
-    const { _id, role } = useSelector(state => state.user)
-    const [submit, setSubmit] = useState(true)
+
     const rescueFormSchema = Yup.object().shape({
         name: Yup.string()
             .min(2, 'Too Short!')
@@ -69,7 +67,7 @@ const CustomForm = () => {
                                 {errors.phone && touched.phone ? <div className="valdMessageDown">{errors.phone}</div> : null}
                             </div>
 
-                            <button type="submit" className='inputFieldSubmit' onClick={() => setSubmit(true)}>
+                            <button type="submit" className='inputFieldSubmit' >
                                 <FontAwesomeIcon icon={faFlag} style={{ marginRight: '5px' }} />
                                 Rescue Now!
                             </button>

@@ -1,21 +1,21 @@
-import './user.css';
+import './cssFile/user.css';
 import { Link } from 'react-router-dom';
-import DropDownButton from './dropDownButton';
+import DropDownButton from './dropDown/dropDownButton';
 import img1 from '../img/firefighterLogo.png'
-import DropDownButtonComment from './dropDownComment';
+import DropDownButtonComment from './dropDown/dropDownComment';
 import SerachButton from './serachButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBell, faHome, faUsers } from '@fortawesome/free-solid-svg-icons'
-import { Button, Dropdown, Space } from 'antd';
+import { faBell, faHome, faMap, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { Button } from 'antd';
 import { useSelector } from 'react-redux'
 const NavBar = () => {
-    const { name, role } = useSelector(state => state.user)
+    const { role } = useSelector(state => state.user)
     return (
         <>
             <nav className="headersLogo">
                 <div className="logo">
                     <Link to="/" className="logo">
-                        <img src={img1} className="firefighterLogo" />Fire<strong>Fighter</strong>
+                        <img src={img1} className="firefighterLogo" alt="loading"/>Fire<strong>Fighter</strong>
                     </Link>
                 </div>
 
@@ -28,7 +28,7 @@ const NavBar = () => {
                         </li>
                     </Link>
 
-                    <Link to="/users" style={{display:role=="admin"?'':"none"}}>
+                    <Link to="/users" style={{display:role==="admin"?'':"none"}}>
                         <li className='middleNavLinks'>
                             <Button className='middleNavLinkBox'>
                                 <FontAwesomeIcon icon={faUsers} className="homeIcon" />
@@ -40,6 +40,13 @@ const NavBar = () => {
                         <li className='middleNavLinks'>
                             <Button className='middleNavLinkBox'>
                                 <FontAwesomeIcon icon={faBell} className="homeIcon" />
+                            </Button>
+                        </li>
+                    </Link>
+                    <Link to="/map">
+                        <li className='middleNavLinks'>
+                            <Button className='middleNavLinkBox'>
+                                <FontAwesomeIcon icon={faMap} className="homeIcon" />
                             </Button>
                         </li>
                     </Link>

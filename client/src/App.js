@@ -1,5 +1,5 @@
 import './App.css';
-import PageRoute from './components/pageRoute';
+import PageRoute from './routes/pageRoute';
 
 const App = ()=> {
   return(

@@ -2,24 +2,21 @@
 import { Route, Routes } from 'react-router-dom';
 import UserDashboard from '../containers/user/userDashboard';
 import AdminDashboard from '../containers/admin/adminDashboard';
-import AboutUsDashboard from '../containers/user/aboutUsDashboard';
-import ContactDashboard from '../containers/user/contactDashboard';
 import Login from '../containers/auth/login';
 import Register from '../containers/auth/register';
 import { useSelector } from "react-redux";
-import Home from '../containers/auth/home';
+import Home from '../containers/home/home';
 import NavBar from '../components/navBar';
 import UserListDashboard from '../containers/admin/userListDashboard';
-import NotificationDashboard from '../containers/sharedScreen/notificationDashboard';
+import NotificationDashboard from '../components/notification/notificationDashboard';
 import Profile from '../containers/sharedScreen/profile';
-import CredentialsProfile from './credentialsProfile';
-import PracticeModels from './practiceModels';
+import MapDashboard from '../components/map/mapDashboard';
 
 const PageRoute = ()=> {
-  const {email,role} =useSelector(state=>state.user)
-  if(role=="user"){
+  const {role} =useSelector(state=>state.user)
+  if(role==="user"){
     return <><NavBar/><UserScreens/></>
-  }else if(role=="admin")  {
+  }else if(role==="admin")  {
     return <><NavBar/><AdminScreens/></>
   }else{
     return <AuthScreens/>
@@ -36,7 +33,7 @@ const AuthScreens = () => {
     <Routes>
     <Route path="/register" element={<Register />} />
     <Route path="/" element={<Login />} />
-    <Route path="/home" element={<Home />} />
+    <Route path="/home" element={<><NavBar/><Home /></>} />
   </Routes>
   )
 }
@@ -48,6 +45,7 @@ const UserScreens = () => {
     <Route exact path="/" element={<UserDashboard />} />
     <Route exact path="/profile" element={<Profile />} />
     <Route exact path="/notifications" element={<NotificationDashboard />} />
+    <Route exact path="/map" element={<MapDashboard />} />
     </Routes>
   )
 }
@@ -58,6 +56,7 @@ const AdminScreens = () => {
     <Route exact path="/profile" element={<Profile />} />
     <Route exact path="/users" element={<UserListDashboard />} />
     <Route exact path="/notifications" element={<NotificationDashboard />} />
+    <Route exact path="/map" element={<MapDashboard />} />
     </Routes>
   )
 }

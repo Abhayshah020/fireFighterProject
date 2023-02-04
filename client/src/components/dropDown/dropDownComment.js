@@ -1,13 +1,9 @@
 import { Button, Dropdown, Space } from 'antd';
-import { Link } from 'react-router-dom';
-import { logoutResetDetails } from "../redux/actions/userAction"
-import { useDispatch,useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faComments} from '@fortawesome/free-solid-svg-icons'
-import './user.css';
-import { message } from 'antd';
+import '../cssFile/user.css';
 const DropDownButtonComment = () => {
-  const { name } = useSelector(state => state.user)
+
   const items = [
     {
       key: '1',

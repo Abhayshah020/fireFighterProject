@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
-import '../../components/auth.css';
+import '../../components/cssFile/auth.css';
 import img1 from '../../img/wave.png'
 import img2 from '../../img/background.png'
-import img3 from '../../img/avatar.svg'
-import { Button, notification } from 'antd';
+import { notification } from 'antd';
 import { useNavigate } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faContactBook, faLock, faMap, faPhone, faUser, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import { faContactBook, faMap, faPhone, faUser, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -50,10 +49,10 @@ const Register = () => {
   };
   return (
     <>
-      <img className="wave" src={img1} />
+      <img className="wave" src={img1} alt="loading"/>
       <div className="container">
         <div className="img">
-          <img src={img2} />
+          <img src={img2} alt="loading"/>
         </div>
         <div className="login-content">
           <Formik
@@ -69,7 +68,7 @@ const Register = () => {
             }}
             validationSchema={registerSchema}
             onSubmit={async (values, { resetForm }) => {
-              if (values.role == "admin") {
+              if (values.role === "admin") {
                 values.adminId = random()
               } else {
                 values.adminId = "#user"
@@ -83,8 +82,6 @@ const Register = () => {
               try {
                 const res = await fetch(`${process.env.REACT_APP_API_URL}/register`, requestOptions)
                 const data = await res.json()
-
-                // console.log(data.isRegistered)
                 if (data.isRegistered) {
                   notification.destroy();
                   notification.success({ message: data.msg, duration: 2 });
@@ -102,7 +99,6 @@ const Register = () => {
 
             {({ errors, touched }) => (
               <Form>
-                {/* <img src={img3} /> */}
                 <h2 className="title">Welcome</h2>
                 <div className="input-div one">
                   <div className="i">
@@ -180,7 +176,7 @@ const Register = () => {
                   {errors.role && touched.role ? <div className="roleValidationMessage">{errors.role}</div> : null}
                 </div>
                 <button type="submit" className="btn btn-reg">Register Now!</button>
-                <Link to="/" className="user_name"><a href="#">Already have account? Go Back To Login</a></Link>
+                <Link to="/" className="user_name">Already have account? Go Back To Login</Link>
                 <Link to="/" className="user_name"><button className="btn-login">Login</button></Link>
 
               </Form>

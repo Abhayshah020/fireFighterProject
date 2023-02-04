@@ -1,23 +1,19 @@
 import { Button, Dropdown, Space , notification} from 'antd';
 import { Link } from 'react-router-dom';
-import { logoutResetDetails } from "../redux/actions/userAction"
+import { logoutResetDetails } from "../../redux/actions/userAction"
 import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCog, faCogs, faCommenting, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons'
-import './user.css';
+import { faCog, faCommenting, faSignOut } from '@fortawesome/free-solid-svg-icons'
+import '../cssFile/user.css';
 import React, { useState, useEffect } from "react";
 import axios from "axios"
-import DrawerFeature from './drawer';
+import DrawerFeature from '../drawer/drawer';
 
 const DropDownButton = () => {
-  const { _id, role } = useSelector(state => state.user)
   const [userDetails, setUserDetails] = useState({})
-  const { name, email } = useSelector(state => state.user)
+  const {_id, email } = useSelector(state => state.user)
   const dispatch = useDispatch()
 
-  const profileLogoPic = () => {
-    require(`../uploads/${userDetails}`)
-  }
   const fetchUserDetails = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/credentialsProfile/${_id}`).then((response) => {
       setUserDetails(response.data.userDetails)
@@ -38,7 +34,7 @@ const DropDownButton = () => {
         <>
           <Link to="/profile" style={{ color: "black" }}>
             <div className='profileLogoInsideBox' >
-              {userDetails.avatarName && <img src={require(`../uploads/${userDetails.avatarName}`)} alt="Loading.." className="profileUserLogo" />}
+              {userDetails.avatarName && <img src={require(`../../uploads/${userDetails.avatarName}`)} alt="Loading.." className="profileUserLogo" />}
               #{email}
             </div>
           </Link>
@@ -95,7 +91,7 @@ const DropDownButton = () => {
       <Space wrap>
         <Dropdown menu={{ items }} placement="bottomRight">
           <Button className='profileBox' >
-            {userDetails.avatarName && <img src={require(`../uploads/${userDetails.avatarName}`)} alt="Loading.." className="profileUserLogo" />}
+            {userDetails.avatarName && <img src={require(`../../uploads/${userDetails.avatarName}`)} alt="Loading.." className="profileUserLogo" />}
           </Button>
         </Dropdown>
       </Space>

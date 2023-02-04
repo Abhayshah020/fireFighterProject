@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import { message } from 'antd';
-import './rescueListBox.css'
+import '../cssFile/rescueListBox.css'
 const EditForm = ({ isAdminEdit, item, handleCancel}) => {
     const itemSchema = Yup.object().shape({
         name: Yup.string()

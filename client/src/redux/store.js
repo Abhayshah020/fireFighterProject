@@ -4,8 +4,11 @@ import logger from 'redux-logger'
 import { persistReducer, persistStore } from 'redux-persist';
 import userSlice from './reducers/userSlice'
 import storage from 'redux-persist/lib/storage';
+import locationSlice from './reducers/locationSlice'
+
 const reducer = combineReducers({
-  user: userSlice
+  user: userSlice,
+  location: locationSlice
 });
 
 const persistConfig = {

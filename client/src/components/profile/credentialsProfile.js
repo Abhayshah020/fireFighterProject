@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react"
 import { useSelector } from 'react-redux'
 import axios from "axios"
-import './profile.css'
+import '../cssFile/profile.css'
 import { Link } from 'react-router-dom';
 import { message } from 'antd';
-import { Button, Dropdown, Space } from 'antd';
-import img1 from '../img/firefighterLogo.jpg'
-import img2 from '../img/firefighter.jpg'
+import { Button } from 'antd';
+import img1 from '../../img/firefighterLogo.jpg'
+import img2 from '../../img/firefighter.jpg'
 const CredentialsProfile = () => {
 
     const { _id, role, name, address, phone, email, adminId } = useSelector(state => state.user)
@@ -48,7 +48,7 @@ const CredentialsProfile = () => {
             <div className="profilePicsBox">
                 <div>
                     <div>
-                        {userDetails.avatarName && <img src={require(`../uploads/${userDetails.avatarName}`)} alt="Loading.." className="profilePic" />}
+                        {userDetails.avatarName && <img src={require(`../../uploads/${userDetails.avatarName}`)} alt="Loading.." className="profilePic"/>}
                     </div>
                     <div>
                         <input type="file" onChange={(e) => {
@@ -73,7 +73,7 @@ const CredentialsProfile = () => {
                 </div>
                 <div>
                     <Link to="/" >
-                        <img src={role=="admin"?img1:img2} className={role=="admin"?"fireFighterLogoProfilePic":"fireFighterLogoProfileUserPic"} />
+                        <img src={role==="admin"?img1:img2} className={role==="admin"?"fireFighterLogoProfilePic":"fireFighterLogoProfileUserPic"} alt="loading"/>
                     </Link>
                 </div>
             </div>

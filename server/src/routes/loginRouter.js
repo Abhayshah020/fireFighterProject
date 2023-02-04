@@ -9,7 +9,7 @@ router.post("/login", async (req, res) => {
         if (req.body.email) {
             const user = await Users.findOne({ email: req.body.email }).lean()
             if (user) {
-                if (user.role == "user") {
+                if (user.role === "user") {
                     try {
                         const { email, password } = user;
                         const isMatched = bcrypt.compareSync(req.body.password, password)
@@ -54,7 +54,7 @@ router.post("/login", async (req, res) => {
         if (req.body.email) {
             const user = await Users.findOne({ email: req.body.email }).lean()
             if (user) {
-                if (user.role == "admin") {
+                if (user.role === "admin") {
                     try {
                         const { email, password } = user;
                         const isMatched = bcrypt.compareSync(req.body.password, password)

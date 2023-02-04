@@ -10,6 +10,17 @@
     /* justify-content: center; */
     border-radius: 10px;
 }
+.missionBox{
+    display: flex;
+    background-color: rgb(205, 173, 98);
+    margin: 10px auto;
+    margin-right: 75px;
+    height: 80px;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
 
 .rescueBox {
     border: 1px solid black;
@@ -128,19 +139,7 @@
 .deleteButton:hover,.editButton:hover,.acceptListBox:hover,.declineListBox:hover{
     background-color: aqua;
 }
-.missionBox{
-    display: flex;
-    background-color: rgb(205, 173, 98);
-    margin: 10px auto;
-    margin-right: 75px;
-    height: 80px;
-    width: 90%;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    list-style: none;
-    border-radius: 10px;
-}
+
 .missionNewsBox{
     display: flex;
     background-color: rgb(98, 152, 205);
