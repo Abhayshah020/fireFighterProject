@@ -3,7 +3,8 @@ import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import { message } from 'antd';
 import '../cssFile/rescueListBox.css'
-const EditForm = ({ isAdminEdit, item, handleCancel}) => {
+import { OmitProps } from "antd/es/transfer/ListBody";
+const EditForm = ({ isAdminEdit, item, handleCancel,showmodal}) => {
     const itemSchema = Yup.object().shape({
         name: Yup.string()
             .min(2, 'Too Short!')
@@ -28,14 +29,17 @@ const EditForm = ({ isAdminEdit, item, handleCancel}) => {
                         method: "PUT",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(values),
+
                     };
                     const res = await fetch(`${process.env.REACT_APP_API_URL}/rescueList`, requestOptions);
                     const data = await res.json();
                     if (data.isEdit) {
                         message.success(data.msg, [1.4])
+                        // showmodal(false)
                     } else {
                         message.error(data.errorMsg, [1.8])
                     }
+                    
                 }}
             >
 

@@ -35,7 +35,7 @@ const RescueList = () => {
                 <div className={role === "admin"?"paginationCss":"paginationUserCss"}>
                 <div>
                         {rescueList.map((item, id) => {
-                            return <RescueListBox item={item} key={id} />
+                            return <RescueListBox item={item} key={id} fetchAvailableItems={fetchAvailableItems()}/>
                         })}
                     </div>
 

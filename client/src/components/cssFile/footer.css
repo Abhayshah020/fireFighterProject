@@ -1,12 +1,18 @@
-
+html {
+    overflow: scroll;
+}
+html::-webkit-scrollbar {
+    display: none;
+}
 .footerIcon{
     margin-top: 10px;
 }
 
 .footer-distributed {
+    position: absolute;
     background-color: rgba(30, 14, 41, 0.6);
     box-sizing: border-box;
-    margin-top: 132px;
+    bottom: 0px;
     width: 100%;
     text-align: left;
     font: bold 16px sans-serif;
