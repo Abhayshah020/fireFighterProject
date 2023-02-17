@@ -2,7 +2,6 @@ import './cssFile/user.css';
 import { Link } from 'react-router-dom';
 import DropDownButton from './dropDown/dropDownButton';
 import img1 from '../img/firefighterLogo.png'
-import DropDownButtonComment from './dropDown/dropDownComment';
 import SerachButton from './serachButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faHome, faMap, faUsers } from '@fortawesome/free-solid-svg-icons'
@@ -55,9 +54,6 @@ const NavBar = () => {
                 <div style={{ margin: '3px', display: 'flex' }}>
                     <li className="navlinks links" style={{ marginRight: "20px" }}>
                         <SerachButton />
-                    </li>
-                    <li className="navlinks links" style={{ marginRight: "20px" }}>
-                        <DropDownButtonComment />
                     </li>
                     <li className="navlinks links">
                         <DropDownButton />

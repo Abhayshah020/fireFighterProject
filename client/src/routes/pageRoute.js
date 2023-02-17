@@ -11,6 +11,8 @@ import UserListDashboard from '../containers/admin/userListDashboard';
 import NotificationDashboard from '../components/notification/notificationDashboard';
 import Profile from '../containers/sharedScreen/profile';
 import MapDashboard from '../components/map/mapDashboard';
+import PracticeModels from '../components/practiceModels';
+import PracticeModle2 from '../components/practiceModule2';
 
 const PageRoute = ()=> {
   const {role} =useSelector(state=>state.user)
@@ -24,6 +26,7 @@ const PageRoute = ()=> {
   // return (
   //   <Routes>
   //   <Route exact path="/" element={<PracticeModels />} />
+  //   <Route exact path="/hello" element={<PracticeModle2 />} />
   //   </Routes>
   // )
 }

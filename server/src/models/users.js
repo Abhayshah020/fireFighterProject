@@ -10,6 +10,7 @@ const usersSchema = new mongoose.Schema(
     role: { type: String },
     adminId: { type: String},
     avatarName: { type: String},
+    addressLatLong: { type: Object},
   },
   { collection: "Users" }
 );

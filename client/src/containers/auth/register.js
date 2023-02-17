@@ -9,8 +9,11 @@ import { notification } from 'antd';
 import { useNavigate } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faContactBook, faMap, faPhone, faUser, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import { useSelector } from 'react-redux'
+import Map from "../../components/map/map";
+import { Popconfirm } from 'antd';
 
-
+const text = 'Please Drag The Marker To Your Location!';
 
 const registerSchema = Yup.object().shape({
 
@@ -41,18 +44,25 @@ const registerSchema = Yup.object().shape({
 });
 
 const Register = () => {
+  const { localAddressNameAfterRevGeoCode, fireFighterLocationLatLng } = useSelector(state => state.location)
+  const [showAddressName, setShowAddressName] = useState(localAddressNameAfterRevGeoCode)
   const [showPassword, setShowPassword] = useState(true)
   const [showPassword1, setShowPassword1] = useState(true)
   const navigate = useNavigate()
+
   const random = () => {
     return Math.random().toString(16).substr(2, 14);
   };
+  const addressLatLng = () => {
+    return fireFighterLocationLatLng
+  };
+
   return (
     <>
-      <img className="wave" src={img1} alt="loading"/>
+      <img className="wave" src={img1} alt="loading" />
       <div className="container">
         <div className="img">
-          <img src={img2} alt="loading"/>
+          <img src={img2} alt="loading" />
         </div>
         <div className="login-content">
           <Formik
@@ -65,6 +75,7 @@ const Register = () => {
               confirmPassword: "",
               role: "",
               adminId: "",
+              addressLatLong:{},
             }}
             validationSchema={registerSchema}
             onSubmit={async (values, { resetForm }) => {
@@ -73,6 +84,10 @@ const Register = () => {
               } else {
                 values.adminId = "#user"
               }
+              console.log(fireFighterLocationLatLng)
+              values.addressLatLong = addressLatLng()
+              console.log(values.addressLatLong)
+              // debugger;
               const { confirmPassword, ...updatedValues } = values
               const requestOptions = {
                 method: "POST",
@@ -100,29 +115,35 @@ const Register = () => {
             {({ errors, touched }) => (
               <Form>
                 <h2 className="title">Welcome</h2>
+
                 <div className="input-div one">
                   <div className="i">
                     <FontAwesomeIcon icon={faUser} style={{ color: "black" }} />
                   </div>
                   <div className="div">
-
                     <Field name="name" type="text" placeHolder="name" />
                     {errors.name && touched.name ? <div className="validaton-message">{errors.name}</div> : null}
                   </div>
                 </div>
 
-                <div className="input-div pass">
-                  <div className="i">
-                    <FontAwesomeIcon icon={faMap} style={{ color: "black" }} />
+                <Popconfirm 
+                  placement="bottom"
+                  title={text}
+                  description={<Map isRegister={true} />}
+                  okText="Yes"
+                  cancelText="No"
+                  footer= "none"
+                  onClick={setShowAddressName(localAddressNameAfterRevGeoCode)}
+                >
+                  <div className="input-div pass">
+                    <div className="i">
+                      <FontAwesomeIcon icon={faMap} style={{ color: "black" }} />
+                    </div>
+                    <div className="div">
+                      <Field name="address" type="text" required placeHolder="please locate your address" value={showAddressName}  />
+                    </div>
                   </div>
-                  <div className="div">
-
-                    <Field name="address" type="text" placeHolder="address" />
-                    {errors.address && touched.address ? <div className="validaton-message">{errors.address}</div> : null}
-
-                  </div>
-                </div>
-
+                </Popconfirm>
                 <div className="input-div pass">
                   <div className="i">
                     <FontAwesomeIcon icon={faContactBook} style={{ color: "black" }} />
@@ -130,7 +151,6 @@ const Register = () => {
                   <div className="div">
                     <Field name="email" type="text" placeHolder="Email" />
                     {errors.email && touched.email ? <div className="validaton-message">{errors.email}</div> : null}
-
                   </div>
                 </div>
 
@@ -139,34 +159,31 @@ const Register = () => {
                     <FontAwesomeIcon icon={faPhone} style={{ color: "black" }} />
                   </div>
                   <div className="div">
-
                     <Field name="phone" type="text" placeHolder="phone" />
                     {errors.phone && touched.phone ? <div className="validaton-message">{errors.phone}</div> : null}
-
                   </div>
                 </div>
+
                 <div className="input-div pass">
                   <div className="i">
                     <FontAwesomeIcon onClick={() => setShowPassword(!showPassword)} icon={showPassword ? faEyeSlash : faEye} style={{ color: "black", cursor: "pointer" }} />
                   </div>
                   <div className="div">
-
                     <Field name="password" type={showPassword ? 'password' : 'text'} placeHolder="Password" />
                     {errors.password && touched.password ? <div className="validaton-message">{errors.password}</div> : null}
-
                   </div>
                 </div>
+
                 <div className="input-div pass">
                   <div className="i">
                     <FontAwesomeIcon onClick={() => setShowPassword1(!showPassword1)} icon={showPassword1 ? faEyeSlash : faEye} style={{ color: "black", cursor: "pointer" }} />
                   </div>
                   <div className="div">
-
                     <Field name="confirmPassword" type={showPassword1 ? 'password' : 'text'} placeHolder="confirmPassword" />
                     {errors.confirmPassword && touched.confirmPassword ? <div className="validaton-message">{errors.confirmPassword}</div> : null}
-
                   </div>
                 </div>
+
                 <div>
                   <Field as="select" name="role" placeholder="Select Your Account Type" className="accountSelector">
                     <option value="">Select Your Account Type</option>
@@ -175,6 +192,7 @@ const Register = () => {
                   </Field>
                   {errors.role && touched.role ? <div className="roleValidationMessage">{errors.role}</div> : null}
                 </div>
+
                 <button type="submit" className="btn btn-reg">Register Now!</button>
                 <Link to="/" className="user_name">Already have account? Go Back To Login</Link>
                 <Link to="/" className="user_name"><button className="btn-login">Login</button></Link>

@@ -1,0 +1,9 @@
+.writtenModal{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    z-index: 100;
+    transition: 0.5s ease-in-out;
+    
+}

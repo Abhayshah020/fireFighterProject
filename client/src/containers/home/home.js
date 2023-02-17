@@ -1,6 +1,7 @@
-// import React from 'react';
 // import './home.css'
+
 // const Home = () => {
+
 //     return (
 //         <>
 
@@ -73,8 +74,6 @@
 
 
 //             </footer>
-
-//             <img src="./img/goup.png" className="goupbtn" alt="" />
 
 
 //         </>

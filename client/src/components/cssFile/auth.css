@@ -102,6 +102,16 @@ form{
 	justify-content: center;
 	align-items: center;
 }
+.iAddress{
+	color: #d9d9d9;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.iAddress:hover{
+	font-size: 18px;
+}
 
 .i i{
 	transition: .3s;

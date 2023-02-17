@@ -6,7 +6,7 @@ import '../cssFile/rescueListBox.css'
 import RescueListBox from "./rescueListBox";
 import NoData from "../noData";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faExclamationCircle, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+import { faExclamationCircle, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 
 const RescueList = () => {
     const { role } = useSelector(state => state.user)
@@ -14,7 +14,7 @@ const RescueList = () => {
     const [usersCount, setTotalUsersCount] = useState(0)
 
     const fetchAvailableItems = (page, size) => {
-        axios.get(`${process.env.REACT_APP_API_URL}/rescueList?page=${page || 1}&size=${role === "admin"?size || 8:size || 6}`).then((response) => {
+        axios.get(`${process.env.REACT_APP_API_URL}/rescueList?page=${page || 1}&size=${role === "admin" ? size || 8 : size || 6}`).then((response) => {
             setrescueList(response.data.rescueList)
             setTotalUsersCount(response.data.totalRescueListCount)
         });
@@ -32,17 +32,17 @@ const RescueList = () => {
             </h2>
             {rescueList.length > 0 ? (
                 <>
-                <div className={role === "admin"?"paginationCss":"paginationUserCss"}>
-                <div>
-                        {rescueList.map((item, id) => {
-                            return <RescueListBox item={item} key={id} fetchAvailableItems={fetchAvailableItems()}/>
-                        })}
-                    </div>
+                    <div className={role === "admin" ? "paginationCss" : "paginationUserCss"}>
+                        <div>
+                            {rescueList.map((item, id) => {
+                                return <RescueListBox item={item} key={id} fetchAvailableItems={()=>fetchAvailableItems()} />
+                            })}
+                        </div>
 
-                    <div style={role === "admin"?{}:{margin:"20px", display:"flex",justifyContent:'center'}}>
-                        <Pagination defaultCurrent={1} total={usersCount} defaultPageSize={role === "admin"?8:6} onChange={(page, size) => fetchAvailableItems(page, size)} />
+                        <div style={role === "admin" ? {} : { margin: "20px", display: "flex", justifyContent: 'center' }}>
+                            <Pagination defaultCurrent={1} total={usersCount} defaultPageSize={role === "admin" ? 8 : 6} onChange={(page, size) => fetchAvailableItems(page, size)} />
+                        </div>
                     </div>
-                </div>
 
 
                 </>

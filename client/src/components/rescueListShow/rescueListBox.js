@@ -34,8 +34,22 @@ const RescueListBox = (props) => {
             return ''
          }
    }
+   const deleteConfirmRescue = async ()=>{
+      if (role === "admin") {
+         const requestOptions = {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ _id: props.item._id }),
+         };
+           const res= await fetch(`${process.env.REACT_APP_API_URL}/rescueList`, requestOptions);
+         props.fetchAvailableItems()
+         message.success('you have deleted the rescue mission');
+      } else {
+         message.success('you have declined the rescue mission');
+      };
+   }
 
-   const showDeleteConfirm = () => {
+   const showDeleteConfirm =  () => {
       confirm({
          title: role === "admin" ? 'Are you sure delete this task?' : 'Are you sure decline this task?',
          icon: <ExclamationCircleFilled />,
@@ -44,21 +58,7 @@ const RescueListBox = (props) => {
          okType: 'danger',
          cancelText: 'No',
          onOk () {
-            if (role === "admin") {
-               const requestOptions = {
-                  method: "DELETE",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({ _id: props.item._id }),
-               };
-                 fetch(
-                  `${process.env.REACT_APP_API_URL}/rescueList`,
-                  requestOptions
-               );
-               props.fetchAvailableItems()
-               message.success('you have deleted the rescue mission');
-            } else {
-               message.success('you have declined the rescue mission');
-            };
+            deleteConfirmRescue()
          },
          onCancel() {
          },
@@ -84,7 +84,7 @@ const RescueListBox = (props) => {
    return (
       <>
          <Modal title={role === "admin" ? "Edit The Rescue Details?" : "Congratulation!"} footer={null} open={isModalOpen} onCancel={handleCancel}>
-            {role === "admin" ? <EditForm item={props.item} showmodal={showModal}/> : "Your Rescue Mission Is Accepted Successfully!"}
+            {role === "admin" ? <EditForm item={props.item} /> : "Your Rescue Mission Is Accepted Successfully!"}
          </Modal>
          <div className={role === "admin" ? 'userBox' : 'missionBox'} style={{backgroundColor: backgroundColorafter()}}>
             <div className={role === "admin" ? 'userListBox' : 'missionListBox'}>Contacted Person Name:<br />{props.item.name}</div>
@@ -110,3 +110,4 @@ const RescueListBox = (props) => {
    )
 }
 export default RescueListBox;
+

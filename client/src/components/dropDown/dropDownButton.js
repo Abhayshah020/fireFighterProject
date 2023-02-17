@@ -8,6 +8,7 @@ import '../cssFile/user.css';
 import React, { useState, useEffect } from "react";
 import axios from "axios"
 import DrawerFeature from '../drawer/drawer';
+import img from '../../img/userDafault.png'
 
 const DropDownButton = () => {
   const [userDetails, setUserDetails] = useState({})
@@ -34,7 +35,8 @@ const DropDownButton = () => {
         <>
           <Link to="/profile" style={{ color: "black" }}>
             <div className='profileLogoInsideBox' >
-              {userDetails.avatarName && <img src={require(`../../uploads/${userDetails.avatarName}`)} alt="Loading.." className="profileUserLogo" />}
+            {userDetails.avatarName? <img src={require(`../../uploads/${userDetails.avatarName}`)} alt="P" className="profileUserLogo" />: 
+            <img src={img} alt="P" className="profileUserLogo" />}
               #{email}
             </div>
           </Link>
@@ -91,7 +93,8 @@ const DropDownButton = () => {
       <Space wrap>
         <Dropdown menu={{ items }} placement="bottomRight">
           <Button className='profileBox' >
-            {userDetails.avatarName && <img src={require(`../../uploads/${userDetails.avatarName}`)} alt="Loading.." className="profileUserLogo" />}
+            {userDetails.avatarName? <img src={require(`../../uploads/${userDetails.avatarName}`)} alt="P" className="profileUserLogo" />: 
+            <img src={img} alt="P" className="profileUserLogo" />}
           </Button>
         </Dropdown>
       </Space>

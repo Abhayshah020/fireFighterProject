@@ -3,8 +3,7 @@ import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import { message } from 'antd';
 import '../cssFile/rescueListBox.css'
-import { OmitProps } from "antd/es/transfer/ListBody";
-const EditForm = ({ isAdminEdit, item, handleCancel,showmodal}) => {
+const EditForm = ({ isAdminEdit, item, handleCancel}) => {
     const itemSchema = Yup.object().shape({
         name: Yup.string()
             .min(2, 'Too Short!')
@@ -35,7 +34,7 @@ const EditForm = ({ isAdminEdit, item, handleCancel,showmodal}) => {
                     const data = await res.json();
                     if (data.isEdit) {
                         message.success(data.msg, [1.4])
-                        // showmodal(false)
+                        
                     } else {
                         message.error(data.errorMsg, [1.8])
                     }
@@ -58,6 +57,7 @@ const EditForm = ({ isAdminEdit, item, handleCancel,showmodal}) => {
                                 <Field name="phone" placeholder="Contact Personal Number" type="string" className="fieldEditForm"/>
                                 {errors.phone && touched.phone ? (<div className="errorEditForm">{errors.phone}</div>) : null}
                             </div>
+
 
                             <button name="Sumbit" type="submit" className="editFormSubmitButton">Edit Rescue Mission</button>
                         </Form>

@@ -14,9 +14,9 @@ const Notification = () => {
     const fetchAvailableItems = (page, size) => {
         axios.get(`${process.env.REACT_APP_API_URL}/rescueList?page=${page || 1}&size=${size || 4}`).then((response) => {
             setuserList(response.data.rescueList)
-            console.log(response.data.totalRescueListCount)
+            // console.log(response.data.totalRescueListCount)
             setTotalUsersCount(response.data.totalRescueListCount)
-            console.log(usersCount)
+            // console.log(usersCount)
         });
     }
 

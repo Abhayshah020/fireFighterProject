@@ -6,6 +6,7 @@ const rescueListSchema = new mongoose.Schema(
     address: { type: String},
     phone: { type: String },
     date: { type: String },
+    rescueStatus: { type: String },
   },
   { collection: "RescueList" }
 );

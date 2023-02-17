@@ -1,20 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
-  senderLocationLatLng: {},
-  receiverLocationLatLng: {}
+  fireFighterLocationLatLng: {},
+  localAddressNameAfterRevGeoCode: '',
 };
 
 const locationSlice = createSlice({
   name: "location",
   initialState,
   reducers: {
-    setSenderLocationLatLng: (state, actions) => {
-      state.senderLocationLatLng = actions.payload
+    setFireFighterLocationLatLng: (state, actions) => {
+      state.fireFighterLocationLatLng = actions.payload
     },
- 
+    setLocalAddressNameAfterRevGeoCode: (state, actions) => {
+      state.localAddressNameAfterRevGeoCode = actions.payload
+    },
   }
 });
 
-export const { setSenderLocationLatLng } = locationSlice.actions;
+export const { setFireFighterLocationLatLng, setLocalAddressNameAfterRevGeoCode } = locationSlice.actions;
 export default locationSlice.reducer;

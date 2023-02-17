@@ -4,7 +4,7 @@ import Map from './map';
  const MapDashboard = () => {
     return(
         <>
-        <Map/>
+        <Map isRegister={false}/>
         </>
     )
  }
