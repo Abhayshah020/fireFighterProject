@@ -51,9 +51,30 @@
   - [x] Add, Update, Delete Rescue Mission used dynamic form
   - [x] Added Map using LeafLet with user and admin location  
 
--[ ] Future Build up on the project 
+## Future Build up on the project 
   - [ ] Search orders feature
   - [ ] Live tracking of the fire fighter truck in leaflet map 
   - [ ] live chat system using socket to communicate between admin and user
   - [ ] Display a front page for non-logged in people
   - [ ] Display live news feed to non-logged in people
+
+## Images of the project
+- Login Page Images
+![LoginPage](https://github.com/Abhayshah020/fireFighterProject/blob/develop/ReadMeImage/LoginPage.png)
+
+![RegisterPage](https://github.com/Abhayshah020/fireFighterProject/blob/develop/ReadMeImage/RegisterPage.png)
+
+- Admin Page Images
+![adminHomePage](https://github.com/Abhayshah020/fireFighterProject/blob/develop/ReadMeImage/AdminHomePage.png)
+
+![adminProfilePage](https://github.com/Abhayshah020/fireFighterProject/blob/develop/ReadMeImage/AdminProfilePage.png)
+
+- User Page Images
+![userHomePage](https://github.com/Abhayshah020/fireFighterProject/blob/develop/ReadMeImage/UserHomePage.png)
+
+![userProfilePage](https://github.com/Abhayshah020/fireFighterProject/blob/develop/ReadMeImage/UserProfilePage.png)
+
+- Shared Screen Images
+![sharedUserDetailsPage](https://github.com/Abhayshah020/fireFighterProject/blob/develop/ReadMeImage/UserDetailsPage.png)
+
+![sharedNewsPagePage](https://github.com/Abhayshah020/fireFighterProject/blob/develop/ReadMeImage/NewsPage.png)
