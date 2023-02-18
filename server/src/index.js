@@ -22,9 +22,11 @@ const io = new Server(server,{
 
 io.on('connection', (socket) => {
   console.log("socket is connected")
-  socket.on('rescueRequest', async(rescueRequest)=>{
-    io.emit('rescueRequest', rescueRequest)
-    // console.log(rescueRequest)
+  socket.on('rescueStatus', async(rescueStatus)=>{
+    io.emit('rescueStatus', rescueStatus)
+  })
+  socket.on('imageStatus', async(imageStatus)=>{
+    io.emit('imageStatus', imageStatus)
   })
 });
 

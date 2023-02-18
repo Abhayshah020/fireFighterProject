@@ -12,7 +12,7 @@ const AdminDashboard = () => {
     const [usersCount, setTotalUsersCount] = useState(0)
 
     const fetchAvailableItems =async(page, size) => {
-        await axios.get(`${process.env.REACT_APP_API_URL}/rescueList?page=${page || 1}&size=${role === "admin" ? size || 8 : size || 6}`).then((response) => {
+        await axios.get(`${process.env.REACT_APP_API_URL}/rescueList?page=${page || 1}&size=${role === "admin" ? size || 5 : size || 6}`).then((response) => {
             setrescueList(response.data.rescueList)
             setTotalUsersCount(response.data.totalRescueListCount)
         });

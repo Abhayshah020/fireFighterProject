@@ -5,26 +5,9 @@ import { message, Modal, Popconfirm, notification } from 'antd';
 import { ExclamationCircleFilled } from '@ant-design/icons';
 import EditForm from "../form/editForm";
 import axios from "axios";
-import io from 'socket.io-client';
-const socket = io(process.env.REACT_APP_API_URL);
 const { confirm } = Modal;
-const ReadMore = ({ children }) => {
-   const text = children;
-   const [isReadMore, setIsReadMore] = useState(true);
-   const toggleReadMore = () => {
-      setIsReadMore(!isReadMore);
-   };
-   return (
-      <p className="text">
-      {isReadMore ? text.slice(0, 10) : text}
-      <span onClick={toggleReadMore} className="read-or-hide">
-         {isReadMore ? <i style={{color:'blue'}}>..read more</i>: <i style={{color:'blue'}}>..show less</i>}
-      </span>
-      </p>
-   );
-   };
 
-const RescueListBox = (props) => {
+const CompletedMissionBox = (props) => {
    const { role, _id } = useSelector(state => state.user)
    const [isModalOpen, setIsModalOpen] = useState(false);
    const [isAccepted, setIsAccepted] = useState(false);
@@ -36,9 +19,9 @@ const RescueListBox = (props) => {
       } else {
          rescueMissionAccepted();
          isAcceptedMission();
-         socketRerender()
       }
    };
+
    const cancel = (e) => {
    };
    const showModal = () => {
@@ -64,10 +47,6 @@ const RescueListBox = (props) => {
          return ''
       }
    }
-
-   const socketRerender = async()=>{
-      await socket.emit('rescueStatus',{sendStatus:sendRescueStatus(), missionAddress:props.item.address})
-    }
    const rescueMissionAccepted = async () => {
       await axios.put(`${process.env.REACT_APP_API_URL}/rescueList`, { address: props.item.address, rescueStatus: sendRescueStatus(), senderId: _id }).then((response) => {
          if (response.data.isEdit) {
@@ -84,7 +63,7 @@ const RescueListBox = (props) => {
          } else if (props.item.rescueStatus === 'accept') {
             return 'green'
          } else {
-            return 'blue'
+            return '#00E5FF'
          }
       }
    }
@@ -166,9 +145,9 @@ const RescueListBox = (props) => {
          <Modal title="Edit The Rescue Details?" footer={null} open={isModalOpen} onCancel={handleCancel}>
             {<EditForm item={props.item} fetchAvailableItems={() => props.fetchAvailableItems()} />}
          </Modal>
-         <div className={role === "admin" ? 'userBox' : 'missionBox'} style={{ backgroundColor: backgroundColorafter() }}>
+         <div className='missionBox' style={{ backgroundColor: backgroundColorafter() }}>
             <div className={role === "admin" ? 'userListBox' : 'missionListBox'}>Contacted Person Name:<br />{props.item.name}</div>
-            <div className={role === "admin" ? 'userListBox' : 'missionListBox'}>Rescue Address:<br /><ReadMore>{props.item.address}</ReadMore></div>
+            <div className={role === "admin" ? 'userListBox' : 'missionListBox'}>Rescue Address:<br />{props.item.address}</div>
             <div className={role === "admin" ? 'userListBox' : 'missionListBox'}>Contacted Person Name:<br />{props.item.phone}</div>
             <div className={role === "admin" ? 'userListBox' : 'missionListBox'}>
                <Popconfirm
@@ -205,5 +184,5 @@ const RescueListBox = (props) => {
       </>
    )
 }
-export default RescueListBox;
+export default CompletedMissionBox;
 

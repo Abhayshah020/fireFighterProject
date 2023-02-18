@@ -84,10 +84,8 @@ const Register = () => {
               } else {
                 values.adminId = "#user"
               }
-              // console.log(fireFighterLocationLatLng)
               values.addressLatLong = addressLatLng()
-              // console.log(values.addressLatLong)
-              // debugger;
+              values.address = showAddressName
               const { confirmPassword, ...updatedValues } = values
               const requestOptions = {
                 method: "POST",

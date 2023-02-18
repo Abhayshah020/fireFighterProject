@@ -4,11 +4,12 @@ import DropDownButton from './dropDown/dropDownButton';
 import img1 from '../img/firefighterLogo.png'
 import SerachButton from './serachButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBell, faHome, faMap, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faBell, faCheckCircle, faHome, faMap, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { Button } from 'antd';
 import { useSelector } from 'react-redux'
 const NavBar = () => {
     const { role } = useSelector(state => state.user)
+    
     return (
         <>
             <nav className="headersLogo">
@@ -39,6 +40,13 @@ const NavBar = () => {
                         <li className='middleNavLinks'>
                             <Button className='middleNavLinkBox'>
                                 <FontAwesomeIcon icon={faBell} className="homeIcon" />
+                            </Button>
+                        </li>
+                    </Link>
+                    <Link to="/completedMission">
+                        <li className='middleNavLinks'>
+                            <Button className='middleNavLinkBox'>
+                                <FontAwesomeIcon icon={faCheckCircle} className="homeIcon" />
                             </Button>
                         </li>
                     </Link>

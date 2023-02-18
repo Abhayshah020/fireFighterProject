@@ -12,7 +12,6 @@ import img from '../../img/userDafault.png'
 
 const DropDownButton = () => {
   const [userDetails, setUserDetails] = useState({})
-  // const [UserProfileAvatar, setUserProfileAvatar] = useState('')
   const { _id, email } = useSelector(state => state.user)
   const dispatch = useDispatch()
 
@@ -60,22 +59,6 @@ const DropDownButton = () => {
     },
     {
       key: '3',
-      label: (
-        <>
-          <div >
-            <FontAwesomeIcon icon={faCommenting} style={{ color: "black" }} />
-            <button className="button_logout">
-              <Link to="/" style={{ color: "black" }}>
-                Give FeedBack
-              </Link>
-            </button>
-          </div>
-
-        </>
-      ),
-    },
-    {
-      key: '4',
       label: (
         <>
           <div onClick={() => triggerLogout()}>

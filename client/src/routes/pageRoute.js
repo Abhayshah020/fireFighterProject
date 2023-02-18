@@ -13,6 +13,7 @@ import Profile from '../containers/sharedScreen/profile';
 import MapDashboard from '../components/map/mapDashboard';
 import PracticeModels from '../components/practiceModels';
 import PracticeModle2 from '../components/practiceModule2';
+import CompletedMission from '../components/completedMission/completedMission';
 
 const PageRoute = ()=> {
   const {role} =useSelector(state=>state.user)
@@ -26,7 +27,7 @@ const PageRoute = ()=> {
   // return (
   //   <Routes>
   //   <Route exact path="/" element={<PracticeModels />} />
-  //   <Route exact path="/hello" element={<PracticeModle2 />} />
+  //   {/* <Route exact path="/hello" element={<PracticeModle2 />} /> */}
   //   </Routes>
   // )
 }
@@ -48,6 +49,7 @@ const UserScreens = () => {
     <Route exact path="/" element={<UserDashboard />} />
     <Route exact path="/profile" element={<Profile />} />
     <Route exact path="/notifications" element={<NotificationDashboard />} />
+    <Route exact path="/completedMission" element={<CompletedMission/>} />
     <Route exact path="/map" element={<MapDashboard />} />
     </Routes>
   )
@@ -59,6 +61,7 @@ const AdminScreens = () => {
     <Route exact path="/profile" element={<Profile />} />
     <Route exact path="/users" element={<UserListDashboard />} />
     <Route exact path="/notifications" element={<NotificationDashboard />} />
+    <Route exact path="/completedMission" element={<CompletedMission />} />
     <Route exact path="/map" element={<MapDashboard />} />
     </Routes>
   )

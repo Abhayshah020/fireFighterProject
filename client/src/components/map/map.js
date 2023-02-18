@@ -104,7 +104,8 @@ const Map = (props) => {
         position={props.item ? props.item : center}
         icon={allUserLocationMarker}
         ref={markerRef}>
-        <Popup minWidth={90}>
+        <Popup minWidth={90}
+        >
           <span >
             {props.name}<br/>
             {props.address}
@@ -117,7 +118,7 @@ const Map = (props) => {
   return (
     <>
       <MapContainer center={lat ? [lat, lng] : [27.68564550564005, 85.3445145828365]} zoom={props.isRegister ? '8' : '13'} minZoom={props.isRegister ? 2 : 4} scrollWheelZoom={false}
-        style={{ height: props.isRegister ? "20vw" : '40vw', width: props.isRegister ? '45vw' : '100vw' }} attributionControl={false} >
+        style={{ height: props.isRegister ? "20vw" : '33vw', width: props.isRegister ? '45vw' : '100vw' }} attributionControl={false} >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

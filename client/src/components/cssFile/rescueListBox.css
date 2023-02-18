@@ -4,7 +4,7 @@
     float: right;
     margin: 5px;
     margin-right: 75px;
-    height: 55px;
+    height: 85px;
     width: 70%;
     align-items: center;
     /* justify-content: center; */
@@ -69,7 +69,7 @@
 
 .rescueListTitle {
     margin-top: 40px;
-    margin-left: 700px;
+    margin-left: 750px;
 }
 .rescueUserListTittle{
     margin-top: 40px;
