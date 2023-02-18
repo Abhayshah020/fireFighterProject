@@ -9,7 +9,7 @@ const usersSchema = new mongoose.Schema(
     password: { type: String },
     role: { type: String },
     adminId: { type: String},
-    avatarName: { type: String},
+    avatarName: { type: String, default:'userDafault.png'},
     addressLatLong: { type: Object},
   },
   { collection: "Users" }

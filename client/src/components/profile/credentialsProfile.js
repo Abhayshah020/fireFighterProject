@@ -34,7 +34,7 @@ const CredentialsProfile = () => {
     const fetchUserDetails = () => {
         axios.get(`${process.env.REACT_APP_API_URL}/credentialsProfile/${_id}`).then((response) => {
             setUserDetails(response.data.userDetails);
-            console.log(userDetails);
+            // console.log(userDetails);
         });
     };
 

@@ -11,8 +11,8 @@ const Notification = () => {
     const [userList, setuserList] = useState([])
     const [usersCount, setTotalUsersCount] = useState(30)
 
-    const fetchAvailableItems = (page, size) => {
-        axios.get(`${process.env.REACT_APP_API_URL}/rescueList?page=${page || 1}&size=${size || 4}`).then((response) => {
+    const fetchAvailableItems = async(page, size) => {
+       await axios.get(`${process.env.REACT_APP_API_URL}/rescueList?page=${page || 1}&size=${size || 4}`).then((response) => {
             setuserList(response.data.rescueList)
             // console.log(response.data.totalRescueListCount)
             setTotalUsersCount(response.data.totalRescueListCount)

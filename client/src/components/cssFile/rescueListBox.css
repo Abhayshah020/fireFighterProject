@@ -129,14 +129,8 @@
     border: none;
     cursor: pointer;
 }
-.declineListBox{
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-}
 
-.deleteButton:hover,.editButton:hover,.acceptListBox:hover,.declineListBox:hover{
+.deleteButton:hover,.editButton:hover,.acceptListBox:hover{
     background-color: aqua;
 }
 
@@ -186,5 +180,7 @@
 .paginationCss {
     display: flex;
     flex-wrap: wrap;
+    /* flex-direction: column; */
     justify-content: center;
+    /* margin-left: 100px; */
 }

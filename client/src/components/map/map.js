@@ -32,8 +32,8 @@ const Map = (props) => {
   const dispatch = useDispatch()
   const { lat, lng } = fireFighterLocationLatLng
 
-  const fetchAvailableItems = (page, size) => {
-    axios.get(`${process.env.REACT_APP_API_URL}/addressList`).then((response) => {
+  const fetchAvailableItems = async(page, size) => {
+    await axios.get(`${process.env.REACT_APP_API_URL}/addressList`).then((response) => {
       setRevGeoCodeAddressName(response.data.addressList)
       // console.log(response.data.addressList.addressLatLong)
     });
@@ -122,11 +122,11 @@ const Map = (props) => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <DraggableMarker />
+        {props.isRegister?<DraggableMarker />:''}
 
-        {revGeoCodeAddressName.map((item) => {
+        {!props.isRegister?revGeoCodeAddressName.map((item) => {
           return <MarkerAllAddressShow item={item.addressLatLong} name={item.name} address={item.address}/>
-        })}
+        }):''}
       </MapContainer>
 
     </>

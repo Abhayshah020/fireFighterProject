@@ -1,4 +1,4 @@
-import { Button, Dropdown, Space , notification} from 'antd';
+import { Button, Dropdown, Space, notification } from 'antd';
 import { Link } from 'react-router-dom';
 import { logoutResetDetails } from "../../redux/actions/userAction"
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,17 +12,20 @@ import img from '../../img/userDafault.png'
 
 const DropDownButton = () => {
   const [userDetails, setUserDetails] = useState({})
-  const {_id, email } = useSelector(state => state.user)
+  // const [UserProfileAvatar, setUserProfileAvatar] = useState('')
+  const { _id, email } = useSelector(state => state.user)
   const dispatch = useDispatch()
 
   const fetchUserDetails = () => {
+    // debugger;
     axios.get(`${process.env.REACT_APP_API_URL}/credentialsProfile/${_id}`).then((response) => {
       setUserDetails(response.data.userDetails)
+
     });
   };
   useEffect(() => {
     fetchUserDetails();
-  }, []);
+  },[]);
 
   const triggerLogout = () => {
     dispatch(logoutResetDetails())
@@ -35,8 +38,8 @@ const DropDownButton = () => {
         <>
           <Link to="/profile" style={{ color: "black" }}>
             <div className='profileLogoInsideBox' >
-            {userDetails.avatarName? <img src={require(`../../uploads/${userDetails.avatarName}`)} alt="P" className="profileUserLogo" />: 
-            <img src={img} alt="P" className="profileUserLogo" />}
+              {userDetails.avatarName ? <img src={require(`../../uploads/${userDetails.avatarName}`)} alt="P" className="profileUserLogo" /> :
+                <img src={img} alt="P" className="profileUserLogo" />}
               #{email}
             </div>
           </Link>
@@ -93,8 +96,8 @@ const DropDownButton = () => {
       <Space wrap>
         <Dropdown menu={{ items }} placement="bottomRight">
           <Button className='profileBox' >
-            {userDetails.avatarName? <img src={require(`../../uploads/${userDetails.avatarName}`)} alt="P" className="profileUserLogo" />: 
-            <img src={img} alt="P" className="profileUserLogo" />}
+            {userDetails.avatarName ? <img src={require(`../../uploads/${userDetails.avatarName}`)} alt="P" className="profileUserLogo" /> :
+              <img src={img} alt="P" className="profileUserLogo" />}
           </Button>
         </Dropdown>
       </Space>

@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
   console.log("socket is connected")
   socket.on('rescueRequest', async(rescueRequest)=>{
     io.emit('rescueRequest', rescueRequest)
-    console.log(rescueRequest)
+    // console.log(rescueRequest)
   })
 });
 

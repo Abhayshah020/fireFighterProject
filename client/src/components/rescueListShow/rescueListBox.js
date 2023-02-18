@@ -1,17 +1,29 @@
 import React, { useState } from "react";
 import { useSelector } from 'react-redux'
 import '../cssFile/rescueListBox.css'
-import { message, Modal} from 'antd';
+import { message, Modal, Popconfirm, notification } from 'antd';
 import { ExclamationCircleFilled } from '@ant-design/icons';
 import EditForm from "../form/editForm";
+import axios from "axios";
 const { confirm } = Modal;
 
 const RescueListBox = (props) => {
-   const { role } = useSelector(state => state.user)
+   const { role, _id } = useSelector(state => state.user)
    const [isModalOpen, setIsModalOpen] = useState(false);
    const [isAccepted, setIsAccepted] = useState(false);
    const [isDecline, setIsDecline] = useState(false);
 
+   const onConfirm = () => {
+      if (role === "admin") {
+         showModal();
+      } else {
+         rescueMissionAccepted();
+         isAcceptedMission();
+      }
+   };
+
+   const cancel = (e) => {
+   };
    const showModal = () => {
       setIsModalOpen(true);
    };
@@ -19,37 +31,57 @@ const RescueListBox = (props) => {
    const handleCancel = () => {
       setIsModalOpen(false);
    };
-   const isAcceptedMission=()=>{
+   const isAcceptedMission = () => {
       setIsAccepted(true);
    }
-   const isDeclineMission=()=>{
+   const isDeclineMission = () => {
       setIsDecline(true);
    }
-   const backgroundColorafter = ()=>{
-         if (role==='user'&isAccepted){
-            return 'green'
-         }else if(role==='user'&isDecline){
-            return 'red'
-         }else{
-            return ''
-         }
+
+   const sendRescueStatus = () => {
+      if (props.item.rescueStatus === 'pending') {
+         return "accept"
+      } else if (props.item.rescueStatus === 'accept') {
+         return 'missionSuccess'
+      } else {
+         return ''
+      }
    }
-   const deleteConfirmRescue = async ()=>{
+   const rescueMissionAccepted = async () => {
+      await axios.put(`${process.env.REACT_APP_API_URL}/rescueList`, { address: props.item.address, rescueStatus: sendRescueStatus(), senderId: _id }).then((response) => {
+         if (response.data.isEdit) {
+            notification.destroy();
+            notification.success({ message: response.data.msg, duration: 1.4 });
+            props.fetchAvailableItems()
+         }
+      });
+   }
+   const backgroundColorafter = () => {
+      if (role === 'user') {
+         if (props.item.rescueStatus === 'pending') {
+            return ''
+         } else if (props.item.rescueStatus === 'accept') {
+            return 'green'
+         } else {
+            return 'blue'
+         }
+      }
+   }
+   const deleteConfirmRescue = async () => {
       if (role === "admin") {
          const requestOptions = {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ _id: props.item._id }),
          };
-           const res= await fetch(`${process.env.REACT_APP_API_URL}/rescueList`, requestOptions);
+         await fetch(`${process.env.REACT_APP_API_URL}/rescueList`, requestOptions);
          props.fetchAvailableItems()
          message.success('you have deleted the rescue mission');
       } else {
          message.success('you have declined the rescue mission');
       };
    }
-
-   const showDeleteConfirm =  () => {
+   const showDeleteConfirm = () => {
       confirm({
          title: role === "admin" ? 'Are you sure delete this task?' : 'Are you sure decline this task?',
          icon: <ExclamationCircleFilled />,
@@ -57,55 +89,98 @@ const RescueListBox = (props) => {
          okText: 'Yes',
          okType: 'danger',
          cancelText: 'No',
-         onOk () {
+         onOk() {
             deleteConfirmRescue()
          },
          onCancel() {
          },
       });
    };
-
    const editAccept = () => {
       if (role === "admin") {
          return "Edit"
       } else {
-         return "Accept"
+         if (props.item.rescueStatus === 'pending') {
+            return "Accept"
+         } else if (props.item.rescueStatus === 'accept') {
+            return 'Rescue Mission Success'
+         } else {
+            return 'Mission Completed'
+         }
       }
 
+   }
+   const description = () => {
+      if (role === "admin") {
+         return "Do you want to edit the mission"
+      } else {
+         if (props.item.rescueStatus === "pending") {
+            return "Are you sure to accept this rescue mission?"
+         } else if (props.item.rescueStatus === "accept") {
+            return "Are you sure you have completed this rescue mission?"
+         } else {
+            return ''
+         }
+      }
    }
    const deleteDecline = () => {
       if (role === "admin") {
          return "Delete"
-      } else {
-         return "Decline"
       }
+   }
+   const deleteButton=()=>{
+      if(role === "admin"){
+         if(props.item.rescueStatus === "pending"){
+            return ''
+         }else{
+            return "none"
+         }
+      }else{
+         return "none"
+      } 
    }
 
    return (
       <>
-         <Modal title={role === "admin" ? "Edit The Rescue Details?" : "Congratulation!"} footer={null} open={isModalOpen} onCancel={handleCancel}>
-            {role === "admin" ? <EditForm item={props.item} /> : "Your Rescue Mission Is Accepted Successfully!"}
+         <Modal title="Edit The Rescue Details?" footer={null} open={isModalOpen} onCancel={handleCancel}>
+            {<EditForm item={props.item} fetchAvailableItems={() => props.fetchAvailableItems()} />}
          </Modal>
-         <div className={role === "admin" ? 'userBox' : 'missionBox'} style={{backgroundColor: backgroundColorafter()}}>
+         <div className={role === "admin" ? 'userBox' : 'missionBox'} style={{ backgroundColor: backgroundColorafter() }}>
             <div className={role === "admin" ? 'userListBox' : 'missionListBox'}>Contacted Person Name:<br />{props.item.name}</div>
             <div className={role === "admin" ? 'userListBox' : 'missionListBox'}>Rescue Address:<br />{props.item.address}</div>
             <div className={role === "admin" ? 'userListBox' : 'missionListBox'}>Contacted Person Name:<br />{props.item.phone}</div>
             <div className={role === "admin" ? 'userListBox' : 'missionListBox'}>
-               <button className={role === "admin" ? 'editButton' : 'acceptListBox'} onClick={()=>{
-                  showModal();
-                  isAcceptedMission()
-                  }}>
-                  {editAccept()}
-               </button>
-               <button className={role === "admin" ? 'deleteButton' : 'declineListBox'} onClick={()=>{
-                  showDeleteConfirm();
-                  isDeclineMission()
-                  }}>
-                  {deleteDecline()}
-               </button>
+               <Popconfirm
+                  disabled={props.item.rescueStatus === 'missionSuccess' ? true : false}
+                  title={role === "admin" ? "Edit the mission" : "Rescue mission"}
+                  description={description()}
+                  onConfirm={onConfirm}
+                  onCancel={cancel}
+                  okText="Yes"
+                  cancelText="No"
+               >
+                  <button className={role === "admin" ? 'editButton' : 'acceptListBox'}>
+                     {editAccept()}
+                  </button>
+               </Popconfirm>
+               <Popconfirm
+                  title={role === "admin" ? "Edit the mission" : "Rescue mission?"}
+                  description={role === "admin" ? "Do you want to edit the mission" : "Are you sure to accept this rescue mission?"}
+                  onConfirm={() => {
+                     showDeleteConfirm();
+                     isDeclineMission()
+                  }}
+                  onCancel={cancel}
+                  okText="Yes"
+                  cancelText="No"
+               >
+                  <button className={role === "admin" ? 'deleteButton' : ''} style={{ display:deleteButton()  }}>
+                     {deleteDecline()}
+                  </button>
+               </Popconfirm>
             </div>
          </div>
-
+         
       </>
    )
 }

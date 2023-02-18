@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFlag } from '@fortawesome/free-solid-svg-icons'
 import { message } from 'antd';
 
-const CustomForm = () => {
+const CustomForm = (props) => {
 
     const rescueFormSchema = Yup.object().shape({
         name: Yup.string()
@@ -44,6 +44,7 @@ const CustomForm = () => {
                         };
                         const res = await fetch(`${process.env.REACT_APP_API_URL}/rescueList`, requestOptions);
                         const data = await res.json()
+                        props.fetchAvailableItems()
                         if (data.isRescueOrder) {
                             message.success(data.msg, [2])
                         } else {

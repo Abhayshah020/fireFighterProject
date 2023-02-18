@@ -11,21 +11,21 @@ const Footer = () => {
 
     return (
         <>
-            <footer class="footer-distributed">
-                <div class="footer-left">
+            <footer className="footer-distributed">
+                <div className="footer-left">
                     <h3>Fire<span>Fighter</span></h3>
 
-                    <p class="footer-links">
-                        <Link to="/"><a href="#">Home</a></Link>
+                    <p className="footer-links">
+                        <Link to="/">Home</Link>
                         |
-                        <Link to="/profile"><a href="#">About</a></Link>
+                        <Link to="/profile">About</Link>
                         |
-                        <Link to="/profile"><a href="#">Contact</a></Link>
+                        <Link to="/profile">Contact</Link>
                     </p>
 
                 </div>
 
-                <div class="footer-center">
+                <div className="footer-center">
                     <div className='footerIcon'>
                     <FontAwesomeIcon icon={faMapMarker} style={{color:"white", margin:"-1px 1px"}}/>
                         <p><strong>{address},Nepal</strong></p>
@@ -41,14 +41,14 @@ const Footer = () => {
                         <p><a href="">{email}</a></p>
                     </div>
                 </div>
-                <div class="footer-right">
-                    <p class="footer-company-about">
+                <div className="footer-right">
+                    <p className="footer-company-about">
                         <span><strong>Fire<strong>Fighter</strong></strong></span>
                             Things are not easy for <strong>Fire fighter</strong>, We should be brave and quick thinker in the face of 
                             hostile situation and <strong>Fire Fighter</strong> should be strong enough with both physically and in mind to cope up with every situation that are thrown at them. 
                                               
                     </p>
-                    <div class="footer-icons">
+                    <div className="footer-icons">
                         <a href="#"><FontAwesomeIcon icon={faGamepad} className="i1"/></a>                       
                         <a href="#"><FontAwesomeIcon icon={faHome} className="i1"/></a>
                         <a href="#"><FontAwesomeIcon icon={faMagic} className="i1"/></a>
