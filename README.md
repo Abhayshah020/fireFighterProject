@@ -4,7 +4,7 @@
 # For Starting The Project 
 * git clone https://github.com/Abhayshah020/fireFighterProject.git
 * open to terminal and change to directory client and server by "cd client" and "cd server" respectively
-* to start client and server write npm start in both terminal
+* to start client and server write -npm start in both terminal
 
 ## Technology Stack
 * React JS
@@ -12,29 +12,48 @@
 * React Props
 * React Router DOM 
 * Formik & Yup for Form Validation in React
-* React Redux 
+* Redux/Redux Persist
 * Logger/Persist
 * UI Libraries -Ant Design
-* Mongo DB 
-* Node JS, Express
+* Mongo DB, Express
+* Node JS
 * Rest API
 * Axios
+* Socket.io for bi-directional communication.
 * Password encryption using Bcrypt
 * Middlewares
 * Multer for file upload feature
 * Pagination
+* React Leaflet for location mapping
 
 ## Features
-- [x] User
+  - [x] MultiUser Login(user, admin)
   - [x] Login
   - [x] Registration
-  - [x] MultiUser Login(user, admin)
-  - [x] Add, Update, Delete Items used dynamic form
-  - [x] Add, Update, Delete Orders used multi state dynamic form
-  - [x] User Profile, Admin Profile
-- [x] Admin
-  - [x] Display Orders Data
-  - [x] Pagination
-  - [x] Accept/ Reject Orders
-  - [x] Admin Profile
+
 - [x] User
+  - [x] Display Rescue Data
+  - [x] Pagination
+  - [x] users are only able to accept Rescue Mission
+  - [x] User Profile with adding profile avatar using multer
+  - [x] User Notification
+  - [x] User Notification
+  - [x] Accept Rescue items with live feedback 
+  - [x] Added Map using LeafLet with user and admin location  
+
+- [x] Admin
+  - [x] Display Rescue Data
+  - [x] Pagination
+  - [x] Edit/ Delete Rescue Mission
+  - [x] Admin Profile with adding profile avatar using multer
+  - [x] Admin Notification
+  - [x] Admin Notification
+  - [x] Add, Update, Delete Rescue Mission used dynamic form
+  - [x] Added Map using LeafLet with user and admin location  
+
+-[ ] Future Build up on the project 
+  - [ ] Search orders feature
+  - [ ] Live tracking of the fire fighter truck in leaflet map 
+  - [ ] live chat system using socket to communicate between admin and user
+  - [ ] Display a front page for non-logged in people
+  - [ ] Display live news feed to non-logged in people
