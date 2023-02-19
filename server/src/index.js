@@ -28,6 +28,9 @@ io.on('connection', (socket) => {
   socket.on('imageStatus', async(imageStatus)=>{
     io.emit('imageStatus', imageStatus)
   })
+  socket.on('rescueList', async(rescueList)=>{
+    io.emit('rescueList', rescueList)
+  })
 });
 
 app.use(express.json())

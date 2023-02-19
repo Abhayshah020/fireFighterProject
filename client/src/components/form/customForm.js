@@ -5,7 +5,8 @@ import * as Yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFlag } from '@fortawesome/free-solid-svg-icons'
 import { message } from 'antd';
-
+import io from 'socket.io-client';
+const socket = io(process.env.REACT_APP_API_URL);
 const CustomForm = (props) => {
 
     const rescueFormSchema = Yup.object().shape({
@@ -23,6 +24,10 @@ const CustomForm = (props) => {
             .required('Required'),
 
     });
+    
+   const socketRerender = async()=>{
+    await socket.emit('rescueStatus',"true")
+  }
     return (
         <>
             <div className="form">
@@ -45,6 +50,7 @@ const CustomForm = (props) => {
                         const res = await fetch(`${process.env.REACT_APP_API_URL}/rescueList`, requestOptions);
                         const data = await res.json()
                         props.fetchAvailableItems()
+                        socketRerender()
                         if (data.isRescueOrder) {
                             message.success(data.msg, [2])
                         } else {

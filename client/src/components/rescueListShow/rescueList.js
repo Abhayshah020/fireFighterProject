@@ -32,6 +32,17 @@ const RescueList = () => {
         })
         fetchAvailableItems()
     }, [])
+    useEffect(() => {
+        socket.on('rescueList', (rescueList) => {
+            if (rescueList) {
+                fetchAvailableItems()
+                if(role==="user"){
+                notification.destroy();
+                notification.error({ message: "A New Mission was Updated by the Firefighter's Admin", duration: 2 });
+                }
+            }
+        })
+    }, [])
 
     return (
         <>
