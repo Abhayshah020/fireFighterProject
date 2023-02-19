@@ -52,7 +52,7 @@
   - [x] Added Map using LeafLet with user and admin location  
 
 ## Future Build up on the project 
-  - [ ] Search orders feature
+  - [ ] Search Rescue mission feature
   - [ ] Live tracking of the fire fighter truck in leaflet map 
   - [ ] live chat system using socket to communicate between admin and user
   - [ ] Display a front page for non-logged in people

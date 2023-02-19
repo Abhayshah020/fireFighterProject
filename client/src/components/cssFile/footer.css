@@ -73,7 +73,7 @@ html::-webkit-scrollbar {
 }
 
 .i1 {
-    color: #ffffff;
+    color: black;
     width: 17px;
     height: 30px;
     margin: auto;
@@ -81,6 +81,7 @@ html::-webkit-scrollbar {
 }
 .i1:hover {
     background-color:#3F71EA;
+    color: #ffffff;
     width: 24px;
 }
 

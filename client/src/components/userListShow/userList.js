@@ -9,7 +9,7 @@ const UserList = () => {
     const [usersCount, setTotalUsersCount] = useState(0)
 
     const fetchAvailableItems = async(page, size) => {
-        await axios.get(`${process.env.REACT_APP_API_URL}/userList?page=${page || 1}&size=${size || 4}`).then((response) => {
+        await axios.get(`${process.env.REACT_APP_API_URL}/userList?page=${page || 1}&size=${size || 5}`).then((response) => {
             setuserList(response.data.userList)
             setTotalUsersCount(response.data.totalUsersListlength)
         });
@@ -27,7 +27,7 @@ const UserList = () => {
                         return <UserListBox item={item} key={id} />
                     })}
                     <div style={{ margin: "20px", display: "flex", justifyContent: 'center' }}>
-                        <Pagination defaultCurrent={1} total={usersCount} defaultPageSize={4} onChange={(page, size) => fetchAvailableItems(page, size)} />
+                        <Pagination defaultCurrent={1} total={usersCount} defaultPageSize={5} onChange={(page, size) => fetchAvailableItems(page, size)} />
                     </div>
                     
                 </>

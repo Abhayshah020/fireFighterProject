@@ -16,13 +16,13 @@ const ReadMore = ({ children }) => {
    };
    return (
       <p className="text">
-      {isReadMore ? text.slice(0, 10) : text}
-      <span onClick={toggleReadMore} className="read-or-hide">
-         {isReadMore ? <i style={{color:'blue'}}>..read more</i>: <i style={{color:'blue'}}>..show less</i>}
-      </span>
+         {isReadMore ? text.slice(0, 10) : text}
+         <span onClick={toggleReadMore} className="read-or-hide">
+            {isReadMore ? <i style={{ color: 'blue' }}>..read more</i> : <i style={{ color: 'blue' }}>..show less</i>}
+         </span>
       </p>
    );
-   };
+};
 
 const RescueListBox = (props) => {
    const { role, _id } = useSelector(state => state.user)
@@ -36,7 +36,7 @@ const RescueListBox = (props) => {
       } else {
          rescueMissionAccepted();
          isAcceptedMission();
-         socketRerender()
+         // socketRerender()
       }
    };
    const cancel = (e) => {
@@ -65,17 +65,32 @@ const RescueListBox = (props) => {
       }
    }
 
-   const socketRerender = async()=>{
-      await socket.emit('rescueStatus',{sendStatus:sendRescueStatus(), missionAddress:props.item.address})
-    }
+   // const socketRerender = async()=>{
+   //    await socket.emit('rescueStatus',{sendStatus:sendRescueStatus(), missionAddress:props.item.address})
+   //  }
    const rescueMissionAccepted = async () => {
-      await axios.put(`${process.env.REACT_APP_API_URL}/rescueList`, { address: props.item.address, rescueStatus: sendRescueStatus(), senderId: _id }).then((response) => {
-         if (response.data.isEdit) {
+      if (props.item.rescueStatus === 'pending') {
+         await axios.put(`${process.env.REACT_APP_API_URL}/rescueList`, { address: props.item.address, rescueStatus: sendRescueStatus(), senderId: _id }).then((response) => {
+            if (response.data.isEdit) {
+               notification.destroy();
+               notification.success({ message: response.data.msg, duration: 1.4 });
+               props.fetchAvailableItems()
+            }
+         });
+      } else {
+         if (props.item.senderId === _id) {
+            await axios.put(`${process.env.REACT_APP_API_URL}/rescueList`, { address: props.item.address, rescueStatus: sendRescueStatus(), senderId: _id }).then((response) => {
+               if (response.data.isEdit) {
+                  notification.destroy();
+                  notification.success({ message: response.data.msg, duration: 1.4 });
+                  props.fetchAvailableItems()
+               }
+            });
+         } else {
             notification.destroy();
-            notification.success({ message: response.data.msg, duration: 1.4 });
-            props.fetchAvailableItems()
+            notification.success({ message: "You are not the user who accepted this mission!", duration: 1.4 });
          }
-      });
+      }
    }
    const backgroundColorafter = () => {
       if (role) {
@@ -149,16 +164,16 @@ const RescueListBox = (props) => {
          return "Delete"
       }
    }
-   const deleteButton=()=>{
-      if(role === "admin"){
-         if(props.item.rescueStatus === "pending"){
+   const deleteButton = () => {
+      if (role === "admin") {
+         if (props.item.rescueStatus === "pending") {
             return ''
-         }else{
+         } else {
             return "none"
          }
-      }else{
+      } else {
          return "none"
-      } 
+      }
    }
 
    return (
@@ -185,8 +200,8 @@ const RescueListBox = (props) => {
                   </button>
                </Popconfirm>
                <Popconfirm
-                  title={role === "admin" ? "Edit the mission" : "Rescue mission?"}
-                  description={role === "admin" ? "Do you want to edit the mission" : "Are you sure to accept this rescue mission?"}
+                  title={"Delete Mission?"}
+                  description={"Are you sure to delete this rescue mission?"}
                   onConfirm={() => {
                      showDeleteConfirm();
                      isDeclineMission()
@@ -195,13 +210,13 @@ const RescueListBox = (props) => {
                   okText="Yes"
                   cancelText="No"
                >
-                  <button className={role === "admin" ? 'deleteButton' : ''} style={{ display:deleteButton()  }}>
+                  <button className={role === "admin" ? 'deleteButton' : ''} style={{ display: deleteButton() }}>
                      {deleteDecline()}
                   </button>
                </Popconfirm>
             </div>
          </div>
-         
+
       </>
    )
 }

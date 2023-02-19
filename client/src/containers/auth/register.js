@@ -79,6 +79,7 @@ const Register = () => {
             }}
             validationSchema={registerSchema}
             onSubmit={async (values, { resetForm }) => {
+              console.log("vales")
               if (values.role === "admin") {
                 values.adminId = random()
               } else {

@@ -26,8 +26,9 @@ router.post("/rescueList", async (req, res) => {
 
 router.get("/rescueList", async (req, res) => {
   try {
+    const notMissionCompletedIncluded = { rescueStatus: { $nin:['missionSuccess'] } }
     const totalRescueListLength = await RescueList.find()
-    const data = await RescueList.find().limit(req.query.size).skip(req.query.size * req.query.page - req.query.size)
+    const data = await RescueList.find(notMissionCompletedIncluded).limit(req.query.size).skip(req.query.size * req.query.page - req.query.size)
     if (data) {
       res.json({
         msg: "Rescue list dispatch successfully",
