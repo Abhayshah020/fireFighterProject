@@ -59,22 +59,29 @@
   - [ ] Display live news feed to non-logged in people
 
 ## Images of the project
+
 - Login Page Images
+
 ![LoginPage](https://github.com/Abhayshah020/fireFighterProject/blob/develop/ReadMeImage/LoginPage.png)
 
 ![RegisterPage](https://github.com/Abhayshah020/fireFighterProject/blob/develop/ReadMeImage/RegisterPage.png)
 
 - Admin Page Images
+
 ![adminHomePage](https://github.com/Abhayshah020/fireFighterProject/blob/develop/ReadMeImage/AdminHomePage.png)
 
 ![adminProfilePage](https://github.com/Abhayshah020/fireFighterProject/blob/develop/ReadMeImage/AdminProfilePage.png)
 
 - User Page Images
+
 ![userHomePage](https://github.com/Abhayshah020/fireFighterProject/blob/develop/ReadMeImage/UserHomePage.png)
 
 ![userProfilePage](https://github.com/Abhayshah020/fireFighterProject/blob/develop/ReadMeImage/UserProfilePage.png)
 
 - Shared Screen Images
+
 ![sharedUserDetailsPage](https://github.com/Abhayshah020/fireFighterProject/blob/develop/ReadMeImage/UserDetailsPage.png)
 
 ![sharedNewsPagePage](https://github.com/Abhayshah020/fireFighterProject/blob/develop/ReadMeImage/NewsPage.png)
+
+![sharedMapPage](https://github.com/Abhayshah020/fireFighterProject/blob/develop/ReadMeImage/MapPage.png)

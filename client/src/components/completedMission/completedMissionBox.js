@@ -19,7 +19,6 @@ const ReadMore = ({ children }) => {
 };
 
 const CompletedMissionBox = (props) => {
-    const { role } = useSelector(state => state.user)
     const editAccept = () => {
         return 'Mission Completed'
     }
