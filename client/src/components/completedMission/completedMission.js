@@ -13,6 +13,7 @@ import img3 from '../../img/waveUser.png'
 import CompletedMissionBox from "./completedMissionBox";
 import io from 'socket.io-client';
 import { notification } from 'antd';
+import MissionPageLoader from '../skeleton/missionPageLoader';
 const socket = io(process.env.REACT_APP_API_URL);
 
 const CompletedMission = () => {
@@ -20,12 +21,13 @@ const CompletedMission = () => {
     const { role } = useSelector(state => state.user)
     const [rescueList, setrescueList] = useState([])
     const [usersCount, setTotalUsersCount] = useState(0)
-
+    const [loading, setLoading] = useState(true)
     const fetchAvailableItems = async (page, size) => {
         await axios.get(`${process.env.REACT_APP_API_URL}/rescueMission?page=${1}&size=${6}`).then((response) => {
             setrescueList(response.data.rescueList)
             setTotalUsersCount(response.data.totalRescueListCount)
         });
+        setLoading(false)
     }
     useEffect(() => {
         socket.on('rescueStatus', (rescueStatus) => {
@@ -53,14 +55,9 @@ const CompletedMission = () => {
             )
         }
     }
-    return (
-        <>
-            {backgroundColor()}
-            <h2 className="rescueUserListTittle">
-                <FontAwesomeIcon icon={faCheckCircle} style={{ backgroundColor: role === 'admin' ? 'black' : 'none', borderRadius: '25px', color: 'red', fontSize: '25', marginRight: '20px' }} />
-                Rescue Mission Successfull List!
-            </h2>
-            {rescueList.length > 0 ? (
+    const skeletonOrData = () => {
+        if (!loading && rescueList.length > 0) {
+            return (
                 <>
                     <div className="paginationUserCss">
                         <div>
@@ -77,10 +74,23 @@ const CompletedMission = () => {
                             <Pagination defaultCurrent={1} total={usersCount} defaultPageSize={6} onChange={(page, size) => fetchAvailableItems(page, size)} />
                         </div>
                     </div>
-
-
                 </>
-            ) : <NoData />}
+            )
+        }else if(loading){
+            return <MissionPageLoader/>
+        }else {
+            return <NoData/>
+        }
+    }
+    return (
+        <>
+            {backgroundColor()}
+            <h2 className="rescueUserListTittle">
+                <FontAwesomeIcon icon={faCheckCircle} style={{ backgroundColor: role === 'admin' ? 'black' : 'none', borderRadius: '25px', color: 'red', fontSize: '25', marginRight: '20px' }} />
+                Rescue Mission Successfull List!
+            </h2>
+            {skeletonOrData()}
+
         </>
     )
 }

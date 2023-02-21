@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux'
 
- const NoData = () => {
+ const NoData = (props) => {
     const { role } = useSelector(state => state.user)
     return(
         <>

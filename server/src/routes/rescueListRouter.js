@@ -44,6 +44,27 @@ router.get("/rescueList", async (req, res) => {
     console.log(err);
   }
 });
+
+router.get("/notification", async (req, res) => {
+  try {
+    const totalRescueListLength = await RescueList.find()
+    const data = await RescueList.find().limit(req.query.size).skip(req.query.size * req.query.page - req.query.size)
+    if (data) {
+      res.json({
+        msg: "Rescue list dispatch successfully",
+        rescueList: data,
+        totalRescueListCount: totalRescueListLength.length
+      })
+    } else {
+      res.json({
+        msg: "There Are No Rescue Mission Orders",
+      })
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 router.get("/rescueMission", async (req, res) => {
   try {
     const totalRescueListLength = await RescueList.find({rescueStatus:"missionSuccess"})
