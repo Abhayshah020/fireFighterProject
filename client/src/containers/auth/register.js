@@ -23,8 +23,7 @@ const registerSchema = Yup.object().shape({
     .required('Required'),
   address: Yup.string()
     .min(2, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
+    .max(50, 'Too Long!'),
   email: Yup.string().email('Invalid email').required('Required'),
   phone: Yup.string()
     .min(7, 'Too Short!')

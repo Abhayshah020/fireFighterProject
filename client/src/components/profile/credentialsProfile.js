@@ -51,7 +51,6 @@ const CredentialsProfile = () => {
                 <div>
                     <div>
                         {!loading? userDetails.avatarName && <img src={require(`../../uploads/${userDetails.avatarName}`)} alt="Loading.." className="profilePic"/>: <Skeleton.Button shape="circle" active style={{display:'grid', width: "13vw", height: '25vh',margin: "5px"}} />}
-                        {/* {userDetails.avatarName && <img src={require(`../../uploads/${userDetails.avatarName}`)} alt="Loading.." className="profilePic"/>} */}
                     </div>
                     <div>
                         <input type="file" onChange={(e) => {
