@@ -9,6 +9,7 @@ const userRouter = require('./routes/userRouter')
 const profileRouter = require('./routes/profileRouter')
 const messageRouter = require('./routes/messageRouter')
 const mapRouter = require('./routes/mapRouter')
+const path = require('path');
 require('dotenv').config()
 
 const http = require('http');
