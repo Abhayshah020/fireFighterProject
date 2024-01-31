@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 const MongoUrl = process.env.MONGO_URL;
-console.log("🚀 ~ MongoUrl:", MongoUrl)
 module.exports = connect = async () => {
   try {
     mongoose.set("strictQuery",true);
