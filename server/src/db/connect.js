@@ -1,11 +1,16 @@
-const mongoose = require('mongoose');
-
-module.exports = connect=async()=>{
-    try{
-      //database = takeaway
-        await mongoose.connect('mongodb://127.0.0.1:27017/fireFighter', {useNewUrlParser: true, useUnifiedTopology: true});
-        console.log("connected to mongodb");
-    }catch(error){
-        console.error(error);
-    }
+const mongoose = require("mongoose");
+require("dotenv").config();
+const MongoUrl = process.env.MONGO_URL;
+console.log("🚀 ~ MongoUrl:", MongoUrl)
+module.exports = connect = async () => {
+  try {
+    mongoose.set("strictQuery",true);
+    await mongoose.connect(MongoUrl, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("connected to mongodb");
+  } catch (error) {
+    console.error(error);
   }
+};
