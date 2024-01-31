@@ -9,7 +9,7 @@
 
 #rest client file for api testing
 /.http
-
+.env
 # testing
 /coverage
 
