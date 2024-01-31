@@ -6,7 +6,7 @@ const router = express.Router();
 router.get("/addressList", async (req, res) => {
     try {
        const data = await Users.find()
-    //    console.log(data)
+       console.log(data)
         if(data){
             res.json({
                 msg:"User list dispatch successfully",

@@ -20,6 +20,8 @@ const io = new Server(server,{
   },
 });
 
+app.use(express.static("../../client/build"));
+
 io.on('connection', (socket) => {
   console.log("socket is connected")
   socket.on('rescueStatus', async(rescueStatus)=>{
@@ -42,6 +44,10 @@ app.use(userRouter);
 app.use(profileRouter);
 app.use(messageRouter);
 app.use(mapRouter);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+});
 
 connect()
 
