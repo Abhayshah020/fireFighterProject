@@ -21,7 +21,7 @@ const io = new Server(server,{
   },
 });
 
-app.use(express.static("../../client/build"));
+app.use(express.static("../client/build"));
 
 io.on('connection', (socket) => {
   console.log("socket is connected")
@@ -47,7 +47,7 @@ app.use(messageRouter);
 app.use(mapRouter);
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../../client/build", "index.html"));
+  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
 });
 
 connect()
